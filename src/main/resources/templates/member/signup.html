@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+    <th:block th:include="/include/common_css.html"></th:block>
+    <meta charset="UTF-8">
+    <title>회원가입페이지</title>
+
+    <style>
+
+        hr {
+            width:60%;
+        }
+
+        a {
+            color: #6A24FE;
+            text-decoration-color: #6A24FE;
+            text-decoration-line: underline;
+        }
+
+        a:hover {
+            color: #c738d8;
+            text-decoration-color: #c738d8;
+            text-decoration-line: underline;
+        }
+        .fontstyle {
+            font-size: 32px;
+            color: white;
+        }
+
+         #gap {
+             margin-top: 100px;
+             margin-bottom: 5px;
+         }
+
+         #flex-align {
+             width:100vw;
+             display: flex;
+             flex-direction: column;
+             justify-content: center;
+             align-items: center;
+         }
+        .login-wrapper{
+            width: 400px;
+            height: 300px;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .login-wrapper > h2{
+            font-size: 24px;
+            color: #0b0b0b;
+            margin-bottom: 20px;
+        }
+        #login-form > input{
+            width: 100%;
+            height: 48px;
+            padding: 0 10px;
+            box-sizing: border-box;
+            margin-bottom: 16px;
+            border-radius: 6px;
+            background-color: #F8F8F8;
+        }
+        #login-form > input::placeholder{
+            color: #D2D2D2;
+        }
+        #login-form > input[type="submit"]{
+            color: #fff;
+            font-size: 16px;
+            background-color: #0b0b0b;
+            margin-top: 20px;
+        }
+
+        #configtwo {
+            color: #fff;
+            font-size: 16px;
+            background-color: #0b0b0b;
+        }
+
+
+        #login-form > input[type="checkbox"]{
+            display: none;
+        }
+        #login-form > label{
+            color: #1e1e1e;
+        }
+        #login-form input[type="checkbox"] + label{
+            cursor: pointer;
+            padding-left: 26px;
+            background-image: url("checkbox.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        #login-form input[type="checkbox"]:checked + label{
+            background-image: url("checkbox-active.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div class="header-area">
+    <div class="main-header ">
+        <div class="header-top top-bg d-none d-lg-block">
+            <div class="container-fluid">
+                <div class="col-xl-12">
+                    <div class="row d-flex justify-content-between align-items-center">
+                        <div class="header-info-left d-flex">
+                            <div class="logo">
+                                <a href="/"><img src="../assets/img/logo/logo.png" alt=""></a>
+                            </div>
+                            <div class="contact-now">
+                              <p class="fontstyle">회원가입</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+<!--로그인화면-->
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12" id="gap">
+            <h1 class="text-center">SIGN UP</h1>
+            </div>
+
+             <div class="col-lg-12 col-md-12 col-sm-12">
+             <div class="text-center" id="flex-align">
+                 <div class="login-wrapper">
+                    <form method="post" action="/member/signup" id="login-form" class="text-center">
+                        <label>아이디</label>
+                        <input type="text" name="userId" placeholder="ID">
+<!--                        <button type="button" id="configtwo">아이디 중복검사</button><br>-->
+                        <br>
+                        <label>패스워드</label>
+                        <input type="text" name="userPassword" placeholder="Password">
+                        <label>닉네임</label>
+                        <input type="text" name="userName" placeholder="Nickname">
+                        <label>본인 확인용 이메일</label>
+                        <input type="text" name="userEmail" placeholder="Email">
+                        <label>생년월일</label>
+                        <input type="date" name="userBirth" placeholder="BirthDay">
+                        <label>휴대전화</label>
+                        <input type="text" name="userPhone" placeholder="Phone">
+                        <input type="submit" value="회원가입">
+                     </form>
+                </div>
+              </div>
+             </div>
+
+  </div>
+ </div>
+
+
+</th:block>
+
+</body>
+</html>
