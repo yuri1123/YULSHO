@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+<html xmlns:th="http://www.thymleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"></html>
+<head>
+    <th:block th:include="/include/common_css.html"></th:block>
+    <style>
+        #gap {
+            margin-top: 120px;
+            margin-bottom: 50px;
+        }
+
+    </style>
+</head>
+<body>
+<!-- Preloader Start -->
+<!--<th:block th:include="/include/preloader.html"></th:block>-->
+
+<!--<th:block th:include="/include/header.html"></th:block>-->
+<div class="header-area">
+    <div class="main-header ">
+        <div class="header-top top-bg d-none d-lg-block">
+            <div class="container-fluid">
+                <div class="col-xl-12">
+                    <div class="row d-flex justify-content-between align-items-center">
+                        <div class="header-info-left d-flex">
+                            <div class="logo">
+                                <a href="/"><img src="../assets/img/logo/logo.png" alt=""></a>
+                            </div>
+                            <div class="select-this">
+                                <form action="#">
+                                    <div class="select-itms">
+                                    </div>
+                                </form>
+                            </div>
+                            <ul class="contact-now">
+                            </ul>
+                        </div>
+                        <div class="header-info-right">
+                            <ul>
+                                <li><a href="/member/login.html">마이페이지</a></li>
+                                <li><a href="cart.html">장바구니</a></li>
+                                <li><a href="/community/noticelist">커뮤니티</a></li>
+                                <li><a href="/member/login">로그인</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom  header-sticky">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <!-- Logo -->
+                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
+                        <div class="logo">
+                            <!--              <a href="../index.html"><img src="../assets/img/logo/logo.png" alt=""></a>-->
+                        </div>
+                    </div>
+                    <div class="col-xl-7 col-lg-8 col-md-7 col-sm-5">
+                        <!-- Main-menu -->
+                        <div class="main-menu f-right d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="/community/noticelist"></a>공지사항</li>
+                                    <li><a href="#">Q&A</a></li>
+                                    <li><a href=""></a>후기게시판</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-3 col-md-3 col-sm-3 fix-card">
+                        <ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
+                            <li class="d-none d-xl-block">
+                                <div class="form-box f-right ">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12" id="gap">
+        <h1 class="text-center">NOTICE</h1>
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-10 offset-1">
+        <table class="table table">
+            <thead class="text-center">
+                <tr>
+                    <th>NO</th>
+                    <th>TITLE</th>
+                    <th>POSTED BY</th>
+                    <th>DATE</th>
+                    <th>VIEW</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+            <tr th:each="list:${list}">
+                <td th:text="${list.noticeId}">NO</td>
+                <td th:text="${list.noticeTitle}">TITLE</td>
+                <td th:text="${list.noticeWriter}">POSTED BY</td>
+                <td th:text="${list.noticeRegDate}"}>DATE</td>
+                <td th:text="${list.noticeView}">VIEW</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    </div>
+</div>
+
+
+
