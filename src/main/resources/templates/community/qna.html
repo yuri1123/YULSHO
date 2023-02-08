@@ -9,6 +9,9 @@
             margin-bottom: 50px;
         }
 
+        .hover:hover {
+            color: #a367e7;
+        }
     </style>
 </head>
 <body>
@@ -74,6 +77,10 @@
                         <ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
                             <li class="d-none d-xl-block">
                                 <div class="form-box f-right ">
+
+
+
+
                                 </div>
                             </li>
                         </ul>
@@ -90,9 +97,6 @@
 <!-- Header End -->
 
 
-
-
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12" id="gap">
@@ -104,18 +108,14 @@
                 <tr>
                     <th>NO</th>
                     <th>TITLE</th>
-                    <th>POSTED BY</th>
                     <th>DATE</th>
-                    <th>VIEW</th>
                 </tr>
                 </thead>
                 <tbody class="text-center">
-                <tr th:each="list:${list}">
-                    <td th:text="${list.noticeId}">NO</td>
-                    <td th:text="${list.noticeTitle}">TITLE</td>
-                    <td th:text="${list.noticeWriter}">POSTED BY</td>
-                    <td th:text="${list.noticeRegDate}"}>DATE</td>
-                    <td th:text="${list.noticeView}">VIEW</td>
+                <tr th:each="list:${questionList}">
+                    <td th:text="${list.id}">NO</td>
+                    <td><a th:href="@{|/community/qna/detail/${list.id}|}" th:text="${list.subject}" class="black-color hover">TITLE</a></td>
+                    <td th:text="${list.createDate}"}>DATE</td>
                 </tr>
                 </tbody>
             </table>
@@ -124,5 +124,6 @@
     </div>
 </div>
 
-
+</body>
+</html>
 
