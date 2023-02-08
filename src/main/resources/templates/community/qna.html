@@ -61,9 +61,11 @@
                         <div class="main-menu f-right d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">
-                                    <li><a href="/community/noticelist"></a>공지사항</li>
-                                    <li><a href="#">Q&A</a></li>
-                                    <li><a href=""></a>후기게시판</li>
+                                    <li></li>
+                                    <li><a href="/community/noticelist">공지사항</a></li>
+                                    <li><a href="/community/qna">Q&A</a></li>
+                                    <li><a href="/community/qna">리뷰게시판</a></li>
+                                    <li></li>
                                 </ul>
                             </nav>
                         </div>
@@ -91,19 +93,14 @@
 
 
 
-
-
-
-
-
 <div class="container-fluid">
     <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12" id="gap">
-        <h1 class="text-center">NOTICE</h1>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 offset-1">
-        <table class="table table">
-            <thead class="text-center">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="gap">
+            <h1 class="text-center">Q & A 게시판</h1>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 offset-1">
+            <table class="table table">
+                <thead class="text-center">
                 <tr>
                     <th>NO</th>
                     <th>TITLE</th>
@@ -111,18 +108,18 @@
                     <th>DATE</th>
                     <th>VIEW</th>
                 </tr>
-            </thead>
-            <tbody class="text-center">
-            <tr th:each="list:${list}">
-                <td th:text="${list.noticeId}">NO</td>
-                <td th:text="${list.noticeTitle}">TITLE</td>
-                <td th:text="${list.noticeWriter}">POSTED BY</td>
-                <td th:text="${list.noticeRegDate}"}>DATE</td>
-                <td th:text="${list.noticeView}">VIEW</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody class="text-center">
+                <tr th:each="list:${list}">
+                    <td th:text="${list.noticeId}">NO</td>
+                    <td th:text="${list.noticeTitle}">TITLE</td>
+                    <td th:text="${list.noticeWriter}">POSTED BY</td>
+                    <td th:text="${list.noticeRegDate}"}>DATE</td>
+                    <td th:text="${list.noticeView}">VIEW</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
     </div>
 </div>
