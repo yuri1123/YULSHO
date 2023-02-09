@@ -48,15 +48,15 @@ public class CommunityController {
         return "community/qna";
     }
 
-    @GetMapping("/community/qna/detail/{id}")
+    @GetMapping("/community/qnadetail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id){
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
-    return "community/detail";
+    return "community/qnadetail";
 
     }
 
-    @PostMapping("community/qna/create/{id}")
+    @PostMapping("qna/create/{id}")
     public String createAnswer(Model model,
                                @PathVariable("id") Integer id,
                                @RequestParam String content){
