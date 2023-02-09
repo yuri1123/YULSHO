@@ -12,6 +12,16 @@
         .hover:hover {
             color: #a367e7;
         }
+
+        .backcol {
+            background: #1e1e1e;
+            border: #1e1e1e;
+        }
+        .backcol:hover{
+            background: #a367e7;
+            border: #a367e7;
+        }
+
     </style>
 </head>
 <body>
@@ -44,6 +54,8 @@
             </table>
         </div>
 
+        <div class="col-lg-2 col-md-2 col-sm-2 offset-9">
+            <button class="btn-primary backcol"><a th:href="@{/question/create}">질문 등록하기</a></button>
     </div>
 </div>
 

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<html xmlns:th="http://www.thymleaf.org"/>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>YULSHOP입니다.</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS here -->
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/assets/css/flaticon.css">
+  <link rel="stylesheet" href="/assets/css/slicknav.css">
+  <link rel="stylesheet" href="/assets/css/animate.min.css">
+  <link rel="stylesheet" href="/assets/css/magnific-popup.css">
+  <link rel="stylesheet" href="/assets/css/fontawesome-all.min.css">
+  <link rel="stylesheet" href="/assets/css/themify-icons.css">
+  <link rel="stylesheet" href="/assets/css/slick.css">
+  <link rel="stylesheet" href="/assets/css/nice-select.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+
+  <style>
+    .gap {
+      margin-top: 50px;
+      margin-bottom: 10px;
+    }
+    .gap2 {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .backcol {
+      background: #1e1e1e;
+      border: #1e1e1e;
+    }
+    .backcol:hover{
+      background: #a367e7;
+      border: #a367e7;
+    }
+  </style>
+</head>
+<body>
+
+
+<th:block th:include="/include/community_header.html"></th:block>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-10 offset-1 gap">
+  <h5 class="my-3 border-bottom pb-2">질문등록</h5>
+    </div>
+      <div class="col-lg-10 col-md-10 col-sm-10 offset-1" id="gap">
+  <form th:action="@{/question/create}" th:object="${questionForm}" method="post">
+    <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+      <div th:each="err:${#fields.allErrors()}" th:text="${err}"/>
+    </div>
+
+
+    <div class="mb-3">
+      <label for="subject" class="form-label">제목</label>
+      <input type="text" name="subject" id="subject" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="content" class="form-label">내용</label>
+      <textarea name="content" id="content" class="form-control" rows="10"></textarea>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2 offset-10 gap2">
+    <input type="submit" value="저장하기" class="btn-primary my-2 backcol">
+    </div>
+  </form>
+      </div>
+
+
+</body>
+</html>

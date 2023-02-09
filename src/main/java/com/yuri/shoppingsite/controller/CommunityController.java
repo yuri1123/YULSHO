@@ -1,6 +1,8 @@
 package com.yuri.shoppingsite.controller;
 
+import com.yuri.shoppingsite.domain.AnswerForm;
 import com.yuri.shoppingsite.domain.Question;
+import com.yuri.shoppingsite.domain.QuestionForm;
 import com.yuri.shoppingsite.service.AnswerService;
 import com.yuri.shoppingsite.service.NoticeService;
 import com.yuri.shoppingsite.service.QuestionService;
@@ -8,11 +10,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -48,23 +52,42 @@ public class CommunityController {
         return "community/qna";
     }
 
+    @GetMapping("question/create")
+    public String qcreate(QuestionForm questionForm){
+        return "community/qnacreate";
+    }
+
+    @PostMapping("question/create")
+    public String qcreatedo(@Valid QuestionForm questionForm, BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            return "community/qnacreate";
+        }
+        this.questionService.Create(questionForm.getSubject(), questionForm.getContent());
+        return "redirect:/community/qna";
+    }
+
+
     @GetMapping("/community/qnadetail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id){
+    public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm){
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
     return "community/qnadetail";
 
     }
 
-    @PostMapping("qna/create/{id}")
+    @PostMapping("answer/create/{id}")
     public String createAnswer(Model model,
                                @PathVariable("id") Integer id,
-                               @RequestParam String content){
-
+                               @Valid AnswerForm answerForm, BindingResult bindingResult){
     Question question = this.questionService.getQuestion(id);
-    this.answerService.create(question,content);
-        return String.format("redirect:/community/qna/detail/%s", id);
+    if(bindingResult.hasErrors()) {
+        return "community/qnadetail";
     }
+    this.answerService.create(question,answerForm.getContent());
+        return String.format("redirect:/community/qnadetail/%s", id);
+    }
+
 
 
 
