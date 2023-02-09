@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.yuri</groupId>
-    <artifactId>shoppingsite</artifactId>
+    <artifactId>yulshop</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>shoppingsite</name>
     <description>shoppingsite</description>
