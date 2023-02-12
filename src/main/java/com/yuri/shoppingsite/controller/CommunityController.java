@@ -76,6 +76,7 @@ public class CommunityController {
 
     }
 
+
     @PostMapping("answer/create/{id}")
     public String createAnswer(Model model,
                                @PathVariable("id") Integer id,
