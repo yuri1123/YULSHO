@@ -5,7 +5,7 @@
     <th:block th:include="/include/common_css.html"></th:block>
     <style>
         #gap {
-            margin-top: 120px;
+            margin-top: 80px;
             margin-bottom: 50px;
         }
 
@@ -68,7 +68,7 @@
                 <h1 class="text-center">Q & A 게시판</h1>
         </div>
 
-        <div class="col-lg-2 col-md-3 offset-lg-10 offset-md-9 pb-4">
+        <div class="col-lg-2 col-md-3 offset-lg-9 offset-md-8 pb-4">
             <button class="btn-primary backcol rad"><a th:href="@{/question/create}">질문 등록하기</a></button>
         </div>
 
@@ -78,6 +78,7 @@
                 <tr>
                     <th>NO</th>
                     <th>TITLE</th>
+                    <th>WRITER</th>
                     <th>DATE</th>
                 </tr>
                 </thead>
@@ -90,9 +91,8 @@
                     th:if="${#lists.size(list.answerList) > 0}"
                     th:text="${#lists.size(list.answerList)}">
                     </span>
-
-
                     </td>
+                    <td th:if="${list.author !=null}" th:text="${list.author.username}"}>WRITER</td>
                     <td th:text="${list.createDate}"}>DATE</td>
                 </tr>
                 </tbody>

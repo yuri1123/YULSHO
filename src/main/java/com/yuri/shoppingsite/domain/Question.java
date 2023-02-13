@@ -22,7 +22,8 @@ public class Question {
         private String content;
         @CreatedDate
         private LocalDateTime createDate;
-
+        @ManyToOne
+        private SiteUser author;
         @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
         private List<Answer> answerList;
 }

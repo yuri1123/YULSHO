@@ -1,12 +1,15 @@
 package com.yuri.shoppingsite.service;
 
 import com.yuri.shoppingsite.Repository.UserRepository;
+import com.yuri.shoppingsite.config.DataNotFoundException;
 import com.yuri.shoppingsite.domain.SiteUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -26,6 +29,14 @@ public class UserService {
         user.setPhone(phone);
         this.userRepository.save(user);
         return user;
+    }
+    public SiteUser getUser(String username){
+        Optional<SiteUser> siteUser = this.userRepository.findByusername(username);
+        if(siteUser.isPresent()){
+            return siteUser.get();
+        } else {
+            throw new DataNotFoundException("siteuser is not found");
+        }
     }
 
 }
