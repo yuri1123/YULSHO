@@ -26,4 +26,6 @@ public class Question {
         private SiteUser author;
         @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
         private List<Answer> answerList;
+
+        private LocalDateTime modifyDate;
 }
