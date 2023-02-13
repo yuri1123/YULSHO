@@ -1,6 +1,6 @@
 <!doctype html>
-<html lang="ko">
-<html xmlns:th="http://www.thymleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"></html>
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <th:block th:include="/include/common_css.html"></th:block>
     <style>
@@ -52,6 +52,9 @@
         }
 
     </style>
+
+
+
 </head>
 <body>
 <!-- Preloader Start -->
@@ -62,7 +65,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12" id="gap">
-            <h1 class="text-center">Q & A 게시판</h1>
+                <h1 class="text-center">Q & A 게시판</h1>
         </div>
 
         <div class="col-lg-2 col-md-3 offset-lg-10 offset-md-9 pb-4">
