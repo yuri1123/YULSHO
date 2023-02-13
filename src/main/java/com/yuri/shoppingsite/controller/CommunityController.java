@@ -8,6 +8,7 @@ import com.yuri.shoppingsite.service.NoticeService;
 import com.yuri.shoppingsite.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -46,9 +47,9 @@ public class CommunityController {
 
     //qna 게시판으로 이동
     @GetMapping("community/qna")
-    public String goQna(Model model){
-        List<Question> questionList = this.questionService.getList();
-        model.addAttribute("questionList", questionList);
+    public String goQna(Model model, @RequestParam(value="page", defaultValue = "0") int page){
+        Page<Question> paging = this.questionService.getList(page);
+        model.addAttribute("paging", paging);
         return "community/qna";
     }
 
@@ -63,7 +64,7 @@ public class CommunityController {
         if(bindingResult.hasErrors()){
             return "community/qnacreate";
         }
-        this.questionService.Create(questionForm.getSubject(), questionForm.getContent());
+        this.questionService.create(questionForm.getSubject(), questionForm.getContent());
         return "redirect:/community/qna";
     }
 
@@ -77,12 +78,14 @@ public class CommunityController {
     }
 
 
+    //답글달기
     @PostMapping("answer/create/{id}")
     public String createAnswer(Model model,
                                @PathVariable("id") Integer id,
                                @Valid AnswerForm answerForm, BindingResult bindingResult){
     Question question = this.questionService.getQuestion(id);
     if(bindingResult.hasErrors()) {
+        model.addAttribute("question", question);
         return "community/qnadetail";
     }
     this.answerService.create(question,answerForm.getContent());

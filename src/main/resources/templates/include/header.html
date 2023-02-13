@@ -1,6 +1,5 @@
-<html xmlns:th="http://www.thymleaf.org">
-
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <div class="header-area">
   <div class="main-header ">
     <div class="header-top top-bg d-none d-lg-block">
@@ -40,7 +39,24 @@
                 <li><a href="/member/login.html">마이페이지</a></li>
                 <li><a href="cart.html">장바구니</a></li>
                 <li><a href="/community/noticelist">커뮤니티</a></li>
-                <li><a href="/member/login">로그인</a></li>
+                  <li sec:authorize="isAnonymous()">
+                      <a th:href="@{/member/login}">로그인</a>
+                  </li>
+                  <li sec:authorize="isAuthenticated()">
+                      <a href="@{/member/logout}">로그아웃</a>
+                  </li>
+
+
+<!--                  <li class="nav-item">-->
+<!--                      <a class="nav-link"  th:href="@{/member/login}">로그인</a>-->
+<!--                      <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/member/logout}">로그아웃</a>-->
+<!--                  </li>-->
+<!--                  <li class="nav-item">-->
+
+<!--                <li>-->
+<!--                <a sec:authorize="isAnonymous()" th:href="@{/member/login}">로그인</a>-->
+<!--                <a sec:authorize="isAuthenticated()" href="@{/member/logout}">로그아웃</a>-->
+<!--                </li>-->
               </ul>
             </div>
           </div>

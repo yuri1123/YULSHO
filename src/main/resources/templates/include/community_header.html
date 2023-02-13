@@ -1,3 +1,6 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <div class="header-area">
   <div class="main-header ">
     <div class="header-top top-bg d-none d-lg-block">
@@ -22,7 +25,12 @@
                 <li><a href="/member/login.html">마이페이지</a></li>
                 <li><a href="cart.html">장바구니</a></li>
                 <li><a href="/community/noticelist">커뮤니티</a></li>
-                <li><a href="/member/login">로그인</a></li>
+                <li sec:authorize="isAnonymous()">
+                  <a th:href="@{/member/login}">로그인</a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                  <a href="@{/member/logout}">로그아웃</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -38,7 +46,7 @@
               <!--              <a href="../index.html"><img src="../assets/img/logo/logo.png" alt=""></a>-->
             </div>
           </div>
-          <div class="col-xl-7 col-lg-8 col-md-7 col-sm-5">
+          <div class="col-12 d-flex justify-content-center">
             <!-- Main-menu -->
             <div class="main-menu f-right d-none d-lg-block">
               <nav>

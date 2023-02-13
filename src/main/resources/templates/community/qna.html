@@ -21,6 +21,35 @@
             background: #a367e7;
             border: #a367e7;
         }
+        .fontcolors {
+            margin-top:40px;
+            margin-bottom: 40px;
+            font-size: 15px;
+        }
+
+        .page-link {
+            color: #000;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+        .page-item.active .page-link {
+            z-index: 1;
+            color: #555;
+            font-weight:bold;
+            background-color: #f1f1f1;
+            border-color: #ccc;
+
+        }
+        .page-link:focus, .page-link:hover {
+            color: #000;
+            background-color: #fafafa;
+            border-color: #ccc;
+        }
+
+        .rad{
+            border-radius: 10px;
+            padding: 10px 30px;
+        }
 
     </style>
 </head>
@@ -35,6 +64,11 @@
         <div class="col-lg-12 col-md-12 col-sm-12" id="gap">
             <h1 class="text-center">Q & A 게시판</h1>
         </div>
+
+        <div class="col-lg-2 col-md-3 offset-lg-10 offset-md-9 pb-4">
+            <button class="btn-primary backcol rad"><a th:href="@{/question/create}">질문 등록하기</a></button>
+        </div>
+
         <div class="col-lg-10 col-md-10 col-sm-10 offset-1">
             <table class="table table">
                 <thead class="text-center">
@@ -45,18 +79,50 @@
                 </tr>
                 </thead>
                 <tbody class="text-center">
-                <tr th:each="list:${questionList}">
+                <tr th:each="list:${paging}">
                     <td th:text="${list.id}">NO</td>
-                    <td><a th:href="@{|/community/qnadetail/${list.id}|}" th:text="${list.subject}" class="black-color hover">TITLE</a></td>
+                    <td><a th:href="@{|/community/qnadetail/${list.id}|}" th:text="${list.subject}" class="black-color hover">TITLE</a>
+<!--                    댓글개수 표시하기-->
+                    <span class="text-danger small ms-2"
+                    th:if="${#lists.size(list.answerList) > 0}"
+                    th:text="${#lists.size(list.answerList)}">
+                    </span>
+
+
+                    </td>
                     <td th:text="${list.createDate}"}>DATE</td>
                 </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="col-lg-2 col-md-2 col-sm-2 offset-9">
-            <button class="btn-primary backcol"><a th:href="@{/question/create}">질문 등록하기</a></button>
-    </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 offset-1 fontcolors">
+<!--        페이징 처리 시작-->
+        <div th:if="${!paging.isEmpty()}">
+<!--          이전 -->
+            <ul class="pagination justify-content-center">
+                <li class="page-item" th:classappend="${!paging.hasPrevious()}?'disabled'">
+                <a class="page-link" th:href="@{|?page=${paging.number-1}|}">
+                    <span>이전</span>
+                </a>
+                </li>
+<!--                중간-->
+                <li th:each="page:${#numbers.sequence(0, paging.totalPages-1)}"
+                    th:if="${page >= paging.number-5 and page <=paging.number+5}"
+                th:classappend="${page==paging.number} ? 'active'" class="page-item">
+                 <a th:text="${page}" class="page-link" th:href="@{|?page=${page}|}"></a>
+                </li>
+<!--                다음-->
+                <li class="page-item" th:classappend="${!paging.hasNext()} ? 'disabled'">
+                    <a class="page-link" th:href="@{|?page=${paging.number+1}|}">
+                        <span>다음</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+<!--페이징처리 끝-->
+</div>
+
 </div>
 
 </body>

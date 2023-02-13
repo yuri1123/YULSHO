@@ -59,10 +59,10 @@
             box-sizing: border-box;
             margin-bottom: 16px;
             border-radius: 6px;
-            background-color: #F8F8F8;
+            background-color: white;
         }
         #login-form > input::placeholder{
-            color: #D2D2D2;
+            color: lightgrey;
         }
         #login-form > input[type="submit"]{
             color: #fff;
@@ -134,21 +134,25 @@
              <div class="col-lg-12 col-md-12 col-sm-12">
              <div class="text-center" id="flex-align">
                  <div class="login-wrapper">
-                    <form method="post" action="/member/signup" id="login-form" class="text-center">
+                    <form method="post" th:action="@{/member/signup}" th:object="${userCreateForm}" id="login-form" class="text-center">
+                        <div th:fragment="formErrorsFragment" class="alert alert-danger"
+                             role ="alert" th:if="${#fields.hasAnyErrors()}">
+                            <div th:each="err:${#fields.allErrors()}" th:text="${err}"></div>
+                        </div>
                         <label>아이디</label>
-                        <input type="text" name="userId" placeholder="ID">
-<!--                        <button type="button" id="configtwo">아이디 중복검사</button><br>-->
-                        <br>
+                        <input type="text" th:field="*{username}" placeholder="ID">
                         <label>패스워드</label>
-                        <input type="text" name="userPassword" placeholder="Password">
+                        <input type="password" th:field="*{password1}" placeholder="Password">
+                        <label>패스워드확인</label>
+                        <input type="password" th:field="*{password2}" placeholder="Password 확인">
                         <label>닉네임</label>
-                        <input type="text" name="userName" placeholder="Nickname">
-                        <label>본인 확인용 이메일</label>
-                        <input type="text" name="userEmail" placeholder="Email">
+                        <input type="text" th:field="*{nickname}" placeholder="Nickname">
+                        <label>이메일</label>
+                        <input type="email" th:field="*{email}" placeholder="Email">
                         <label>생년월일</label>
-                        <input type="date" name="userBirth" placeholder="BirthDay">
+                        <input type="date" th:field="*{birth}" placeholder="BirthDay">
                         <label>휴대전화</label>
-                        <input type="text" name="userPhone" placeholder="Phone">
+                        <input type="text" th:field="*{phone}" placeholder="Phone">
                         <input type="submit" value="회원가입">
                      </form>
                 </div>
