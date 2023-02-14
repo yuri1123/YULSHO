@@ -30,10 +30,55 @@
 
     <style>
         #gap {
-            margin-top: 120px;
+            margin-top: 80px;
             margin-bottom: 50px;
         }
 
+        .hover:hover {
+            color: #a367e7;
+        }
+
+        .backcol {
+            background: #1e1e1e;
+            border: #1e1e1e;
+        }
+        .backcol:hover{
+            background: #a367e7;
+            border: #a367e7;
+        }
+        .backcol:active {
+            transform: translateY(1px);
+        }
+        .fontcolors {
+            margin-top:40px;
+            margin-bottom: 40px;
+            font-size: 15px;
+        }
+
+        .page-link {
+            color: #000;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+        .page-item.active .page-link {
+            z-index: 1;
+            color: #555;
+            font-weight:bold;
+            background-color: #f1f1f1;
+            border-color: #ccc;
+
+        }
+        .page-link:focus, .page-link:hover {
+            color: #000;
+            background-color: #fafafa;
+            border-color: #ccc;
+        }
+
+        .rad{
+            border-radius: 10px;
+            padding: 10px 30px;
+            margin-top : 15px;
+        }
 
     </style>
 </head>
@@ -47,6 +92,13 @@
             <div class="card-text" style="white-space: pre-line;" th:text="${question.content}"></div>
             <div class="d-flex justify-content-end">
                 <div class="badge bg-light text-dark p-2 text-start">
+
+                    <div th:if="${question.modifyDate != null}" class="badge bg-light text-dark p-2 text-start mx-3">
+                    <div class="mb-2">modified at</div>
+                    <div th:text="${#temporals.format(question.modifyDate,'yyyy-MM-dd HH:mm')}">
+                    </div>
+                    </div>
+
                     <div class="mb-2">
                         <span th:if="${question.author != null}" th:text="${question.author.username}"></span>
                     </div>
@@ -54,51 +106,132 @@
                 </div>
             </div>
 
+            <div class="my-3">
+<!--                 추천하기-->
+                <a href="javascript:void(0);" class="recommend btn-primary backcol rad"
+                   th:data-uri="@{|/question/vote/${question.id}|}">
+                    추천<span class="badge rounded-pill bg-success" th:text="${#lists.size(question.voter)}"></span>
+                </a>
+
+                <script>
+                    const recommend_elemets = document.getElementsByClassName("recommend");
+                    Array.from(recommend_elemets).forEach(function(element){
+                        element.addEventListener('click',function (){
+                            if(confirm("정말로 추천하시겠습니까?")){
+                                location.href = this.dataset.uri;
+                            }
+                        })
+                    })
+                </script>
+
 <!--            수정버튼-->
-            <div clas="my-3">
-                <a th:href="@{|/question/modify/${question.id}|}"
-                   class="btn btn-sm btn-outline-secondary"
+                <a th:href="@{|/community/modify/${question.id}|}" class="btn-primary backcol rad"
                    sec:authorize="isAuthenticated()"
-                   th:if="${question.author != null and #authentication.getPrincipal().getUsername() ==
-                   question.author.username} th:text="수정"></a>
+                   th:if="${question.author != null and #authentication.getPrincipal().getUsername() == question.author.username}"
+                   th:text="수정하기"></a>
+
+<!--            삭제버튼-->
+                <a href="javascript:void(0);" th:data-uri="@{|/community/delete/${question.id}|}" class="delete btn-primary backcol rad" sec:authorize="isAuthenticated()"
+                th:if="${question.author != null and #authentication.getPrincipal().getUsername() == question.author.username}"
+                th:text="삭제"></a>
+
+                <script>
+                    const delete_elements = document.getElementsByClassName("delete");
+                    Array.from(delete_elements).forEach(function(element) {
+                        element.addEventListener('click', function() {
+                            if(confirm("정말로 삭제하시겠습니까?")) {
+                                location.href = this.dataset.uri;
+                            };
+                        });
+                    });
+                </script>
             </div>
-
-
         </div>
     </div>
-
-
-
 
     <!-- 답변의 갯수 표시 -->
     <h5 class="border-bottom my-3 py-2"
         th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
     <!-- 답변 반복 시작 -->
     <div class="card my-3" th:each="answer : ${question.answerList}">
+<!--        <a th:id="|answer_${answer.id}"></a>-->
         <div class="card-body">
             <div class="card-text" style="white-space: pre-line;" th:text="${answer.content}"></div>
             <div class="d-flex justify-content-end">
                 <div class="badge bg-light text-dark p-2 text-start">
+
+                    <div th:if="${answer.modifyDate != null}" class="badge bg-light text-dark p-2 text-start mx-3">
+                        <div class="mb-2">modified at</div>
+                        <div th:text="${#temporals.format(answer.modifyDate, 'yyyy-MM-dd HH:mm')}"></div>
+                    </div>
+
                     <div class="mb-2">
                         <span th:if="${answer.author != null}" th:text="${answer.author.username}"></span>
                     </div>
                     <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
                 </div>
             </div>
+
+            <div class="my-3">
+
+<!--                답변추천버튼-->
+                <a href="javascript:void(0);" class="recommend2 btn-primary backcol rad"
+                   th:data-uri="@{|/answer/vote/${answer.id}|}">
+                    추천
+                    <span class="badge rounded-pill bg-success" th:text="${#lists.size(answer.voter)}"></span>
+                </a>
+
+                <script>
+                    const recommend_elements = document.getElementsByClassName("recommend2");
+                    Array.from(recommend_elements).forEach(function(element){
+                        element.addEventListener('click',function (){
+                            if(confirm("정말로 추천하시겠습니까?")){
+                                location.href = this.dataset.uri;
+                            }
+                        })
+                    })
+                </script>
+
+
+
+<!--            답글수정버튼-->
+                <a th:href="@{|/answer/modify/${answer.id}|}" class="btn-primary backcol rad"
+                   sec:authorize="isAuthenticated()" th:if="${answer.author != null
+                   and #authentication.getPrincipal().getUsername == answer.author.username}"
+                   th:text="수정"></a>
+
+
+
+
+<!--                답글삭제-->
+                <a th:href="@{|/answer/delete/${answer.id}|}" class=" delete btn-primary backcol rad"
+                sec:authorize="isAuthenticated()" th:if="${answer.author != null and
+                #authentication.getPrincipal().getUsername == answer.author.username}"
+                th:text="삭제"></a>
+
+
+
+
+            </div>
+
+
         </div>
     </div>
     <!-- 답변 반복 끝  -->
     <!-- 답변 작성 -->
-    <form th:action="@{|/answer/create/${question.id}|}" th:object="${answerForm}" method="post" class="my-3">
+    <form th:action="@{|/community/create/${question.id}|}" th:object="${answerForm}" method="post" class="my-3">
         <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
             <div th:each="err:${#fields.allErrors()}" th:text="${err}"></div>
         </div>
         <textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="form-control" rows="10"></textarea>
         <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="form-control" rows="10"></textarea>
 
-        <input type="submit" value="답변등록" class="btn btn-primary my-2">
+        <input type="submit" value="답변등록" class="btn-primary backcol rad col-lg-2 col-md-2 col-sm-12 offset-lg-9 offset-md-9 ">
     </form>
 </div>
+
+
+
 
 </body>
 </html>

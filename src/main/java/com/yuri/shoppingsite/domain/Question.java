@@ -7,6 +7,8 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -28,4 +30,8 @@ public class Question {
         private List<Answer> answerList;
 
         private LocalDateTime modifyDate;
+
+        @ManyToMany
+        Set<SiteUser> voter;
+
 }
