@@ -1,7 +1,10 @@
 package com.yuri.shoppingsite.controller;
 
-import com.yuri.shoppingsite.config.DataNotFoundException;
-import com.yuri.shoppingsite.domain.*;
+import com.yuri.shoppingsite.domain.community.Answer;
+import com.yuri.shoppingsite.domain.community.AnswerForm;
+import com.yuri.shoppingsite.domain.community.Question;
+import com.yuri.shoppingsite.domain.community.QuestionForm;
+import com.yuri.shoppingsite.domain.user.SiteUser;
 import com.yuri.shoppingsite.service.AnswerService;
 import com.yuri.shoppingsite.service.NoticeService;
 import com.yuri.shoppingsite.service.QuestionService;
@@ -22,7 +25,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Controller

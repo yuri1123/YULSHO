@@ -2,11 +2,10 @@ package com.yuri.shoppingsite.service;
 
 import com.yuri.shoppingsite.Repository.QuestionRepository;
 import com.yuri.shoppingsite.config.DataNotFoundException;
-import com.yuri.shoppingsite.domain.Answer;
-import com.yuri.shoppingsite.domain.Question;
-import com.yuri.shoppingsite.domain.SiteUser;
+import com.yuri.shoppingsite.domain.community.Answer;
+import com.yuri.shoppingsite.domain.community.Question;
+import com.yuri.shoppingsite.domain.user.SiteUser;
 import lombok.RequiredArgsConstructor;
-import net.bytebuddy.asm.Advice;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

@@ -1,13 +1,10 @@
 package com.yuri.shoppingsite.controller;
 
-import com.yuri.shoppingsite.domain.MemberDTO;
-import com.yuri.shoppingsite.domain.UserCreateForm;
+import com.yuri.shoppingsite.domain.user.UserCreateForm;
 import com.yuri.shoppingsite.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MemberController {

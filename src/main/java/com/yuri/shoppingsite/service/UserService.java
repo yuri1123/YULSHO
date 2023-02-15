@@ -2,10 +2,9 @@ package com.yuri.shoppingsite.service;
 
 import com.yuri.shoppingsite.Repository.UserRepository;
 import com.yuri.shoppingsite.config.DataNotFoundException;
-import com.yuri.shoppingsite.domain.SiteUser;
+import com.yuri.shoppingsite.domain.user.SiteUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

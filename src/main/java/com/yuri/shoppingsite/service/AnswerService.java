@@ -2,9 +2,9 @@ package com.yuri.shoppingsite.service;
 
 import com.yuri.shoppingsite.Repository.AnswerRepository;
 import com.yuri.shoppingsite.config.DataNotFoundException;
-import com.yuri.shoppingsite.domain.Answer;
-import com.yuri.shoppingsite.domain.Question;
-import com.yuri.shoppingsite.domain.SiteUser;
+import com.yuri.shoppingsite.domain.community.Answer;
+import com.yuri.shoppingsite.domain.community.Question;
+import com.yuri.shoppingsite.domain.user.SiteUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

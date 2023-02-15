@@ -1,7 +1,7 @@
 package com.yuri.shoppingsite.Repository;
 
 
-import com.yuri.shoppingsite.domain.Question;
+import com.yuri.shoppingsite.domain.community.Question;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,9 +1,7 @@
 package com.yuri.shoppingsite.service;
 
-import com.yuri.shoppingsite.domain.MemberDTO;
-import com.yuri.shoppingsite.domain.NoticeDTO;
+import com.yuri.shoppingsite.domain.user.MemberDTO;
 import com.yuri.shoppingsite.mapper.MemberMapper;
-import com.yuri.shoppingsite.mapper.NoticeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

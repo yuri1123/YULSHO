@@ -1,12 +1,11 @@
 package com.yuri.shoppingsite.controller;
 
-import com.yuri.shoppingsite.domain.UserCreateForm;
+import com.yuri.shoppingsite.domain.user.UserCreateForm;
 import com.yuri.shoppingsite.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;

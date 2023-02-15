@@ -1,4 +1,4 @@
-package com.yuri.shoppingsite.domain;
+package com.yuri.shoppingsite.domain.community;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;

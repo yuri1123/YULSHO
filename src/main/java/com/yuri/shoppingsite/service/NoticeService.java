@@ -1,6 +1,6 @@
 package com.yuri.shoppingsite.service;
 
-import com.yuri.shoppingsite.domain.NoticeDTO;
+import com.yuri.shoppingsite.domain.community.NoticeDTO;
 import com.yuri.shoppingsite.mapper.NoticeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

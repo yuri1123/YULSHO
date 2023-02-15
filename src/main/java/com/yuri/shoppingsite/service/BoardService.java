@@ -1,6 +1,6 @@
 package com.yuri.shoppingsite.service;
 
-import com.yuri.shoppingsite.domain.BoardDTO;
+import com.yuri.shoppingsite.domain.community.BoardDTO;
 import com.yuri.shoppingsite.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

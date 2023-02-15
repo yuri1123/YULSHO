@@ -1,4 +1,4 @@
-package com.yuri.shoppingsite.domain;
+package com.yuri.shoppingsite.domain.community;
 
 public class BoardDTO {
 

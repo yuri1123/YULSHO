@@ -1,9 +1,8 @@
 package com.yuri.shoppingsite.mapper;
 
-import com.yuri.shoppingsite.domain.NoticeDTO;
+import com.yuri.shoppingsite.domain.community.NoticeDTO;
 import org.apache.ibatis.annotations.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Mapper

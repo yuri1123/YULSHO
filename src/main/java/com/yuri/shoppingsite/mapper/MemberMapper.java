@@ -1,6 +1,6 @@
 package com.yuri.shoppingsite.mapper;
 
-import com.yuri.shoppingsite.domain.MemberDTO;
+import com.yuri.shoppingsite.domain.user.MemberDTO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
