@@ -4,7 +4,6 @@ import com.yuri.shoppingsite.domain.upload.UploadFileDTO;
 import com.yuri.shoppingsite.domain.upload.UploadResultDTO;
 import lombok.extern.log4j.Log4j2;
 import net.coobird.thumbnailator.Thumbnailator;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;

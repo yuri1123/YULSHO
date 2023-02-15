@@ -32,9 +32,22 @@ public class Products {
     private String price;
     private String etc;
 
-    @OneToMany
+    @OneToMany(mappedBy = "products",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, orphanRemoval = true)
     @Builder.Default
     private Set<BoardImage> imageSet = new HashSet<>();
+
+    public void addImage(String uuid, String fileName){
+        BoardImage boardImage = BoardImage.builder().uuid(uuid).
+                fileName(fileName)
+                .products(this)
+                .ord(imageSet.size())
+                .build();
+        imageSet.add(boardImage);
+    }
+    public void clearImage(){
+        imageSet.forEach(boardImage -> boardImage.changeBoard(null));
+        this.imageSet.clear();
+    }
 
     @CreatedDate
     @Column(name = "regdate", updatable = false)
