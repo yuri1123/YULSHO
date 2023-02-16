@@ -9,9 +9,4 @@ import java.util.Optional;
 
 public interface ProductsRepository extends JpaRepository<Products,Long> {
 
-    @EntityGraph(attributePaths = {"imageSet"})
-    @Query("select b from Products b where b.bno = :bno")
-    Optional<Products> findByIdWithImages(Long bno);
-
-
 }
