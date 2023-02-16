@@ -41,6 +41,10 @@ public class ShoppingController {
         return "/shopping/productlist";
     }
 
+    @GetMapping("shopping/test")
+    public void test(){
+//        return "/shopping/test";
+    }
 }
 
 
