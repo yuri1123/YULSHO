@@ -92,13 +92,12 @@
         <!--    th:action="@{/question/create}"-->
         <div class="col-lg-10 col-md-10 col-sm-10 offset-1" id="gap">
 
-<!--            th:action="@{/shopping/uploadproduct}"-->
             <!--            <form th:object="${products}" method="post" enctype="multipart/form-data">-->
             <!--                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
             <!--                <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">-->
             <!--                    <div th:each="err:${#fields.allErrors()}" th:text="${err}"/>-->
             <!--                </div>-->
-        <form th:action="@{/shopping/uploadproduct}" method="post" enctype="multipart/form-data">
+<!--        <form th:action="@{/shopping/uploadproduct}" method="post" enctype="multipart/form-data">-->
             <div class="mb-3">
                 <label for="category" class="form-label">카테고리</label>
                 <!--                    <select class="form-select"  th:field="*{category}" aria-label="Default select example"  id="category">-->
@@ -120,7 +119,6 @@
                 <!--                    <input type="text"  th:field="*{productname}" id="productname" class="form-control">-->
                 <input type="text" name="productname" id="productname" class="form-control">
             </div>
-
 
             <!--                파일첨부-->
             <div class="mb-3">
@@ -152,8 +150,8 @@
                     <!--                    <button type="submit" class="btn-primary backcol rad" data-text="저장하기"><span>저장하기</span></button>-->
                     <input type="submit" value="저장하기" class="btn-primary my-2 backcol">
                 </div>
-                </form>
             </div>
+<!--                </form>-->
     </div>
 </div>
 </div>
