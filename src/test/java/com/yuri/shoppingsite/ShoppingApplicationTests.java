@@ -3,9 +3,13 @@ package com.yuri.shoppingsite;
 import com.yuri.shoppingsite.Repository.AnswerRepository;
 import com.yuri.shoppingsite.Repository.ProductsRepository;
 import com.yuri.shoppingsite.Repository.QuestionRepository;
+import com.yuri.shoppingsite.service.ProductService;
 import com.yuri.shoppingsite.service.QuestionService;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.time.LocalDateTime;
 
 
 @SpringBootTest
@@ -21,6 +25,16 @@ class ShoppingsiteTest {
 
     @Autowired
     private ProductsRepository productsRepository;
+
+    @Autowired
+    private ProductService productService;
+
+    @Test
+    void testupload(){
+        productService.insert("diary","안녕하세요","안녕하세요", 1L,30,"하이하이","ㅎㅎ","ㅎㅎ",LocalDateTime.now());
+
+    }
+
 
 //    @Test
 //    void testJpa() {

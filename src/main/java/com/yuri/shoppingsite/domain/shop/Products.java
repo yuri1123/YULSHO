@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @ToString
 public class Products {
     @Id
@@ -27,8 +27,10 @@ public class Products {
     private Long price;
     private Integer quantity;
     private String etc;
-    @Column(nullable = true)
-    private Long fileId;
+
+    private String uuid;
+    private String filename;
+
     @CreatedDate
     @Column(name = "regdate", updatable = false)
     private LocalDateTime regDate;
