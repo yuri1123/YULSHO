@@ -2,7 +2,7 @@ package com.yuri.shoppingsite.service;
 
 import com.yuri.shoppingsite.Repository.UserRepository;
 import com.yuri.shoppingsite.domain.user.SiteUser;
-import com.yuri.shoppingsite.domain.user.UserRole;
+import com.yuri.shoppingsite.constant.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

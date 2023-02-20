@@ -12,15 +12,8 @@
 <!-- fragments 폴더 아래에 fheader.html 파일의 "th:fragment=header" 영역을 가지고옴-->
 <div th:replace="fragments/fheader::header"></div>
 <!--layout에서 변경되는 영역을 fragment로 설정한다. 앞으로 만드는 페이지는 이영역에 들어감-->
-<div layout:fragment="content">
-
-    h1>파라미터 전달 예제</h1>
-    <div th:text="${param1}"></div>
-    <div th:text="${param2}"></div>
-
-</div>
+<div layout:fragment="content"></div>
 <!--fragments 폴더 아래의 footer.html 파일의 "th:fragment="footer"영역을 가지고 옴-->
 <div th:replace="fragments/footer::footer"></div>
 </body>
-
 </html>

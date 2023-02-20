@@ -1,4 +1,4 @@
-package com.yuri.shoppingsite.domain.user;
+package com.yuri.shoppingsite.constant;
 
 import lombok.Getter;
 
