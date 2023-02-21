@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymleaf.org"/>
 
 <head>
-    <th:block th:include="include/"></th:block>
+    <th:block th:include="include/common_css"></th:block>
 </head>
 
 
@@ -60,7 +60,6 @@
 </head>
 <body>
 
-
 <th:block th:include="/include/header.html"></th:block>
 
 <div class="container-fluid">
@@ -68,70 +67,64 @@
         <div class="col-lg-10 col-md-10 col-sm-10 offset-1 gap">
             <h5 class="my-3 border-bottom pb-2">상품등록</h5>
         </div>
-        <!--    th:action="@{/question/create}"-->
-        <div class="col-lg-10 col-md-10 col-sm-10 offset-1" id="gap">
+<!--        &lt;!&ndash;    th:action="@{/question/create}"&ndash;&gt;-->
+<!--        <div class="col-lg-10 col-md-10 col-sm-10 offset-1" id="gap">-->
 
-            <!--            <form th:object="${products}" method="post" enctype="multipart/form-data">-->
-            <!--                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
-            <!--                <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">-->
-            <!--                    <div th:each="err:${#fields.allErrors()}" th:text="${err}"/>-->
-            <!--                </div>-->
-<!--        <form th:action="@{/shopping/uploadproduct}" method="post" enctype="multipart/form-data">-->
-            <div class="mb-3">
-                <label for="category" class="form-label">카테고리</label>
-                <!--                    <select class="form-select"  th:field="*{category}" aria-label="Default select example"  id="category">-->
-                <select class="form-select" name="category" aria-label="Default select example"  id="category">
-                    <!--                    <select class="form-select"   name="category" aria-label="Default select example"  id="category">-->
-                    <!--                        <th:block th:each="company : ${companyDTOs}">-->
-                    <option th:value="DIARY">DIARY</option>
-                    <option th:value="WALLDECO">WALLDECO</option>
-                    <option th:value="PEN">PEN</option>
-                    <option th:value="LIVING">LIVING</option>
-                    <option th:value="CARD">CARD</option>
-                    <option th:value="ACCESSORY">ACCESSORY</option>
-                    <!--                        </th:block>-->
-                </select>
-            </div>
+<!--            <div class="mb-3">-->
+<!--                <label for="category" class="form-label">카테고리</label>-->
+<!--                &lt;!&ndash;                    <select class="form-select"  th:field="*{category}" aria-label="Default select example"  id="category">&ndash;&gt;-->
+<!--                <select class="form-select" name="category" aria-label="Default select example"  id="category">-->
+<!--                    &lt;!&ndash;                    <select class="form-select"   name="category" aria-label="Default select example"  id="category">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <th:block th:each="company : ${companyDTOs}">&ndash;&gt;-->
+<!--                    <option th:value="DIARY">DIARY</option>-->
+<!--                    <option th:value="WALLDECO">WALLDECO</option>-->
+<!--                    <option th:value="PEN">PEN</option>-->
+<!--                    <option th:value="LIVING">LIVING</option>-->
+<!--                    <option th:value="CARD">CARD</option>-->
+<!--                    <option th:value="ACCESSORY">ACCESSORY</option>-->
+<!--                    &lt;!&ndash;                        </th:block>&ndash;&gt;-->
+<!--                </select>-->
+<!--            </div>-->
 
-            <div class="mb-3">
-                <label for="productname" class="form-label">상품명</label>
-                <!--                    <input type="text"  th:field="*{productname}" id="productname" class="form-control">-->
-                <input type="text" name="productname" id="productname" class="form-control">
-            </div>
+<!--            <div class="mb-3">-->
+<!--                <label for="productname" class="form-label">상품명</label>-->
+<!--                &lt;!&ndash;                    <input type="text"  th:field="*{productname}" id="productname" class="form-control">&ndash;&gt;-->
+<!--                <input type="text" name="productname" id="productname" class="form-control">-->
+<!--            </div>-->
 
-            <!--                파일첨부-->
-            <div class="mb-3">
-                <label for="productfile" class="form-label">상품상세사진 추가</label>
-                <input type="file" name="productfile" id="productfile" class="form-control">
+<!--            &lt;!&ndash;                파일첨부&ndash;&gt;-->
+<!--            <div class="mb-3">-->
+<!--                <label for="productfile" class="form-label">상품상세사진 추가</label>-->
+<!--                <input type="file" name="productfile" id="productfile" class="form-control">-->
 
-                <div class="mb-3">
-                    <label for="productcontent" class="form-label">상품설명</label>
-                    <!--                    <textarea th:field="*{productcontent}" id="productcontent" class="form-control" rows="10"></textarea>-->
-                    <textarea id="productcontent" name="productcontent" class="form-control" rows="10"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="price" class="form-label">상품가격</label>
-                    <!--                    <input type="text" th:field="*{price}" id="price" class="form-control">-->
-                    <input type="text"id="price" name="price" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="quantity" class="form-label">재고</label>
-                    <!--                    <input type="text" th:field="*{price}" id="price" class="form-control">-->
-                    <input type="text"id="quantity" name="quantity" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="etc" class="form-label">비고</label>
-                    <!--                    <input type="text" th:field="*{etc}"  id="etc" class="form-control">-->
-                    <input type="text" id="etc" name="etc" class="form-control">
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 offset-10 gap2">
-<!--                    <input type="button" class="btn-primary backcol rad" id="SubmitBtn" value="등록하기" />-->
-                    <!--                    <button type="submit" class="btn-primary backcol rad" data-text="저장하기"><span>저장하기</span></button>-->
-                    <input type="submit" value="저장하기" class="btn-primary my-2 backcol">
-                </div>
-            </div>
-<!--                </form>-->
-    </div>
+<!--                <div class="mb-3">-->
+<!--                    <label for="productcontent" class="form-label">상품설명</label>-->
+<!--                    &lt;!&ndash;                    <textarea th:field="*{productcontent}" id="productcontent" class="form-control" rows="10"></textarea>&ndash;&gt;-->
+<!--                    <textarea id="productcontent" name="productcontent" class="form-control" rows="10"></textarea>-->
+<!--                </div>-->
+<!--                <div class="mb-3">-->
+<!--                    <label for="price" class="form-label">상품가격</label>-->
+<!--                    &lt;!&ndash;                    <input type="text" th:field="*{price}" id="price" class="form-control">&ndash;&gt;-->
+<!--                    <input type="text"id="price" name="price" class="form-control">-->
+<!--                </div>-->
+<!--                <div class="mb-3">-->
+<!--                    <label for="quantity" class="form-label">재고</label>-->
+<!--                    &lt;!&ndash;                    <input type="text" th:field="*{price}" id="price" class="form-control">&ndash;&gt;-->
+<!--                    <input type="text"id="quantity" name="quantity" class="form-control">-->
+<!--                </div>-->
+<!--                <div class="mb-3">-->
+<!--                    <label for="etc" class="form-label">비고</label>-->
+<!--                    &lt;!&ndash;                    <input type="text" th:field="*{etc}"  id="etc" class="form-control">&ndash;&gt;-->
+<!--                    <input type="text" id="etc" name="etc" class="form-control">-->
+<!--                </div>-->
+<!--                <div class="col-lg-2 col-md-2 col-sm-2 offset-10 gap2">-->
+<!--&lt;!&ndash;                    <input type="button" class="btn-primary backcol rad" id="SubmitBtn" value="등록하기" />&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <button type="submit" class="btn-primary backcol rad" data-text="저장하기"><span>저장하기</span></button>&ndash;&gt;-->
+<!--                    <input type="submit" value="저장하기" class="btn-primary my-2 backcol">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--&lt;!&ndash;                </form>&ndash;&gt;-->
+<!--    </div>-->
 </div>
 </div>
 </body>
