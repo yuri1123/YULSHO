@@ -21,15 +21,9 @@ public class ShoppingController {
     public void shopProducts() {
     }
 
-    //상품 관리 페이지로 가기리스트)
-    @GetMapping("shopping/productlist")
-    public void manProducts() {
-    }
 
-    //상품 등록 페이지로 가기(insert)
-    @GetMapping("shopping/uploadproduct")
-    public void uploadProductsP() {
-    }
+
+
 
     @GetMapping("shopping/test")
     public void gotest(Model model){
