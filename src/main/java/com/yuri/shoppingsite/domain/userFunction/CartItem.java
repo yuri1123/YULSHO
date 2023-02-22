@@ -1,5 +1,6 @@
 package com.yuri.shoppingsite.domain.userFunction;
 
+import com.yuri.shoppingsite.domain.common.BaseEntity;
 import com.yuri.shoppingsite.domain.shop.Item;
 import lombok.Generated;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name="cart_item")
-public class CartItem {
+public class CartItem extends BaseEntity {
 
     @Id
     @GeneratedValue
@@ -21,13 +22,13 @@ public class CartItem {
 
     //하나의 장바구니에 여러 개의 상품을 담을 수 있으므로 @ManyTOOne 어노테이션을 이용해서
     //다대일 관계로 매핑
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="cart_id")
     private Cart cart;
 
     //장바구니에 담을 상품의 정보를 알아야 하므로 상품 엔티티를 매핑한다
    //하나의 상품은 여러 장바구니의 장바구니 상품으로 담길 수 있으므로 @ManyToOne 어노테이션을 이용하여 다대일 관계로 매핑한다
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="item_id")
     private Item item;
 

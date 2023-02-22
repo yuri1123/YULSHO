@@ -1,6 +1,7 @@
 package com.yuri.shoppingsite.domain.user;
 
 import com.yuri.shoppingsite.constant.Role;
+import com.yuri.shoppingsite.domain.common.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Table(name="member")
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @Column(name="member_id")

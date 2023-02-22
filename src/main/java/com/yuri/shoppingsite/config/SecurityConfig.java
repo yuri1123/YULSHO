@@ -110,10 +110,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //미인증 사용자가 리소스에 접근하였을 때 수행되는 핸들러 등록
         http.exceptionHandling()
                 .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
-
-
     }
-
 
     //spring security에서 인증은 AuthenticationManager를 통해 이루어지며
     //AuthenticationManagerBUilder가 AuthenticationManager를 생성한다.

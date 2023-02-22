@@ -1,10 +1,9 @@
 package com.yuri.shoppingsite.domain.userFunction;
 
-import com.yuri.shoppingsite.Repository.CartRepository;
-import com.yuri.shoppingsite.Repository.ItemRepository;
-import com.yuri.shoppingsite.Repository.OrderRepository;
+import com.yuri.shoppingsite.Repository.*;
 import com.yuri.shoppingsite.constant.ItemSellStatus;
 import com.yuri.shoppingsite.domain.shop.Item;
+import com.yuri.shoppingsite.domain.user.Member;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,8 +69,65 @@ class OrderTest {
                 .orElseThrow(EntityNotFoundException::new);
         //엔티티 3개가 실제로 db에 저장되어있는지 검사한다.
         assertEquals(3, savedOrder.getOrderItems().size());
-
-
     }
+
+    @Autowired
+    MemberRepository memberRepository;
+
+    //주문 데이터를 생성해서 저장하는 메소드
+    public Order createOrder(){
+        Order order = new Order();
+
+        for(int i=0; i<3; i++){
+            Item item = createItem();
+            itemRepository.save(item);
+            OrderItem orderItem = new OrderItem();
+            orderItem.setItem(item);
+            orderItem.setCount(10);
+            orderItem.setOrderPrice(1000);
+            orderItem.setOrder(order);
+            order.getOrderItems().add(orderItem);
+        }
+
+        Member member = new Member();
+        memberRepository.save(member);
+
+        order.setMember(member);
+        memberRepository.save(member);
+
+        order.setMember(member);
+        orderRepository.save(order);
+        return order;
+    }
+
+    //order 엔티티에서 관리하고 있는 orderItem 리스트의 0번째 인덱스 요소를 제거한다.
+    @Test
+    @DisplayName("고아객체 제거 테스트")
+    public void orphanRemovalTest(){
+        Order order = this.createOrder();
+        order.getOrderItems().remove(0);
+        em.flush();
+    }
+
+
+    @Autowired
+    OrderItemRepository orderItemRepository;
+
+    @Test
+    @DisplayName("지연로딩 테스트")
+    public void lazyLoadingTest(){
+        Order order = this.createOrder();
+        Long orderItemId = order.getOrderItems().get(0).getId();
+        em.flush();
+        em.clear();
+
+        OrderItem orderItem = orderItemRepository.findById(orderItemId)
+                .orElseThrow(EntityNotFoundException::new);
+        System.out.println("Order class : "+orderItem.getOrder().getClass());
+        System.out.println("================================================");
+        orderItem.getOrder().getOrderDate();
+        System.out.println("================================================");
+    }
+
 
 }
