@@ -3,7 +3,6 @@ package com.yuri.shoppingsite.domain.shop;
 import com.yuri.shoppingsite.constant.ItemSellStatus;
 import lombok.Getter;
 import lombok.Setter;
-import org.aspectj.bridge.IMessage;
 import org.modelmapper.ModelMapper;
 
 import javax.validation.constraints.NotBlank;

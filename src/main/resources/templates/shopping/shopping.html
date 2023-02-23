@@ -2,66 +2,66 @@
 <html lagn="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-  <th:block th:include="/include/common_css.html"></th:block>
-  <style>
-    #gap {
-      margin-top: 80px;
-      margin-bottom: 50px;
-    }
+    <th:block th:include="/include/common_css.html"></th:block>
+    <style>
+        #gap {
+            margin-top: 80px;
+            margin-bottom: 50px;
+        }
 
-    .hover:hover {
-      color: #a367e7;
-    }
+        .hover:hover {
+            color: #a367e7;
+        }
 
-    .backcol {
-      background: #1e1e1e;
-      border: #1e1e1e;
-    }
-    .backcol:hover{
-      background: #a367e7;
-      border: #a367e7;
-    }
-    .fontcolors {
-      margin-top:40px;
-      margin-bottom: 40px;
-      font-size: 15px;
-    }
+        .backcol {
+            background: #1e1e1e;
+            border: #1e1e1e;
+        }
+        .backcol:hover{
+            background: #a367e7;
+            border: #a367e7;
+        }
+        .fontcolors {
+            margin-top:40px;
+            margin-bottom: 40px;
+            font-size: 15px;
+        }
 
-    .page-link {
-      color: #000;
-      background-color: #fff;
-      border: 1px solid #ccc;
-    }
-    .page-item.active .page-link {
-      z-index: 1;
-      color: #555;
-      font-weight:bold;
-      background-color: #f1f1f1;
-      border-color: #ccc;
+        .page-link {
+            color: #000;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+        .page-item.active .page-link {
+            z-index: 1;
+            color: #555;
+            font-weight:bold;
+            background-color: #f1f1f1;
+            border-color: #ccc;
 
-    }
-    .page-link:focus, .page-link:hover {
-      color: #000;
-      background-color: #fafafa;
-      border-color: #ccc;
-    }
+        }
+        .page-link:focus, .page-link:hover {
+            color: #000;
+            background-color: #fafafa;
+            border-color: #ccc;
+        }
 
-    .rad{
-      border-radius: 10px;
-      padding: 10px 30px;
-    }
+        .rad{
+            border-radius: 10px;
+            padding: 10px 30px;
+        }
 
-    .mar {
-      margin-right: 20px;
-    }
+        .mar {
+            margin-right: 20px;
+        }
 
-    .acol {
-      color: black;
-    }
-    .mar2 {
-      margin: 0px 10px;
-    }
-  </style>
+        .acol {
+            color: black;
+        }
+        .mar2 {
+            margin: 0px 10px;
+        }
+    </style>
 
 
 </head>
@@ -70,68 +70,102 @@
 <th:block th:include="/include/header.html"></th:block>
 
 <section class="latest-product-area padding-bottom">
-  <div class="container">
-    <div class="row product-btn d-flex justify-content-end align-items-end" id="gap">
-      <!-- Section Tittle -->
-      <div class="col-xl-4 col-lg-5 col-md-5">
-        <div class="section-tittle mb-30">
-          <h2>ALL PRODUCTS</h2>
-        </div>
-      </div>
-      <div class="col-xl-8 col-lg-7 col-md-7">
-        <div class="properties__button f-right">
-          <!--Nav Button  -->
-          <nav>
-            <div class="nav nav-tabs rad" id="nav-tab" role="tablist">
-              <a class="acol hover mar2" th:href="@{/shopping/shopping}">ALL</a>
-              <a class="acol hover mar2" th:href="@{/shopping/shopping}">DIARY</a>
-              <a class="acol hover mar2" th:href="@{/shopping/shopping}">WALL DECO</a>
-              <a class="acol hover mar2" th:href="@{/shopping/shopping}">PEN&CASE</a>
-              <a class="acol hover mar2" th:href="@{/shopping/shopping}">LIVING</a>
-              <a class="acol hover mar2" th:href="@{/shopping/shopping}">CARD</a>
-              <a class="acol hover mar2" th:href="@{/shopping/shopping}">ACC</a>
-            </div>
-          </nav>
-          <!--End Nav Button  -->
-        </div>
-      </div>
-    </div>
-
-    <!-- Nav Card -->
-    <div class="tab-content" id="nav-tabContent">
-      <!-- card one -->
-      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-        <div class="row">
-          <div class="col-xl-4 col-lg-4 col-md-6">
-            <div class="single-product mb-60">
-              <div class="product-img">
-<!--                그림파일-->
-                <img th:src="@{/assets/yuls/diary.jpg}" alt=""/>
-<!--                <div class="new-product">-->
-<!--                  <span>New</span>-->
-<!--                </div>-->
-              </div>
-              <div class="product-caption">
-<!--                  상품명-->
-                <h4><a href="#">[DIARY] 2023년 다이어리(파랑)</a></h4>
-                <div class="price">
-                  <ul>
-<!--                    상품가격-->
-                    <li>15,000원</li>
-<!--                    <li class="discount">$60.00</li>-->
-                  </ul>
+    <div class="container">
+        <div class="row product-btn d-flex justify-content-end align-items-end" id="gap">
+            <!-- Section Tittle -->
+            <div class="col-xl-4 col-lg-5 col-md-5">
+                <div class="section-tittle mb-30">
+                    <h2>ALL PRODUCTS</h2>
                 </div>
-              </div>
             </div>
-          </div>
-
-      </div>
-
+            <div class="col-xl-8 col-lg-7 col-md-7">
+                <div class="properties__button f-right">
+                    <!--Nav Button  -->
+                    <nav>
+                        <div class="nav nav-tabs rad" id="nav-tab" role="tablist">
+                            <a class="acol hover mar2" th:href="@{/shopping/shopping}">ALL</a>
+                            <a class="acol hover mar2" th:href="@{/shopping/shopping}">DIARY</a>
+                            <a class="acol hover mar2" th:href="@{/shopping/shopping}">WALL DECO</a>
+                            <a class="acol hover mar2" th:href="@{/shopping/shopping}">PEN&CASE</a>
+                            <a class="acol hover mar2" th:href="@{/shopping/shopping}">LIVING</a>
+                            <a class="acol hover mar2" th:href="@{/shopping/shopping}">CARD</a>
+                            <a class="acol hover mar2" th:href="@{/shopping/shopping}">ACC</a>
+                        </div>
+                    </nav>
+                    <!--End Nav Button  -->
                 </div>
-              </div>
+            </div>
+        </div>
 
-    <!-- End Nav Card -->
-  </div>
+        <!-- Nav Card -->
+        <div class="tab-content" id="nav-tabContent">
+            <!-- card one -->
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+
+                <input type="hidden" name="searchQuery" th:value="${itemSearchDto.searchQuery}">
+                <div th:if="${not #strings.isEmpty(itemSearchDto.searchQuery)}" class="center">
+                    <p class="h3 font-weight-bold" th:text="${itemSearchDto.searchQuery} + '검색 결과'"></p>
+                </div>
+
+                <div class="row">
+                    <th:block th:each="item, status: ${items.getContent()}">
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="single-product mb-60">
+                            <div class="product-img">
+                                <!--                그림파일-->
+                                <img th:src="${item.imgUrl}" th:alt="${item.imgUrl}"/>
+                                <!--                <div class="new-product">-->
+                                <!--                  <span>New</span>-->
+                                <!--                </div>-->
+                            </div>
+                            <div class="product-caption">
+                                <!--                  상품명-->
+                                <h4><a href="#">[[${item.itemNm}]]</a></h4>
+                                <div class="price">
+                                    <ul>
+                                        <!--                    상품가격-->
+                                        <li>[[${item.price}]]원</li>
+                                        <!--                    <li class="discount">$60.00</li>-->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    </th:block>
+                </div>
+
+
+                    <div class="justify-content-center" th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
+                        <ul class="pagination justify-content-center">
+
+                            <li class="page-item" th:classappend="${items.number eq 0}?'disabled':''">
+                                <a th:href="@{'/shopping/shopping/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number -1}}" aria-label='Previous' class="page-link">
+                                    <span aria-hidden='true'>Previous</span>
+                                </a>
+                            </li>
+
+                            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number eq page -1}?'active':''">
+                                <a th:href="@{'/shopping/shopping/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page -1}}" th:inline="text" class="page-link">[[${page}]]</a>
+                            </li>
+
+                            <li class="page-item" th:classappend="${items.number +1 ge items.totalPages}?'disabled':''">
+                                <a th:href="@{'/shopping/shopping/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number+1}}" aria-label='Next' class="page-link">
+                                    <span aria-hidden='true'>Next</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+
+
+            </div>
+        </div>
+        <!-- End Nav Card -->
+</div>
 </section>
 <th:block th:include="/include/common_js.html"></th:block>
 </body>
