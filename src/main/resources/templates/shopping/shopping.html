@@ -111,25 +111,19 @@
                 <div class="row">
                     <th:block th:each="item, status: ${items.getContent()}">
                     <div class="col-xl-4 col-lg-4 col-md-6">
+
                         <div class="single-product mb-60">
+                            <a th:href="'/item/'+${item.id}">
                             <div class="product-img">
-                                <!--                그림파일-->
-                                <img th:src="${item.imgUrl}" th:alt="${item.imgUrl}"/>
-                                <!--                <div class="new-product">-->
-                                <!--                  <span>New</span>-->
-                                <!--                </div>-->
+                                 <img th:src="${item.imgUrl}" height="300" th:alt="${item.imgUrl}"/>
                             </div>
                             <div class="product-caption">
-                                <!--                  상품명-->
-                                <h4><a href="#">[[${item.itemNm}]]</a></h4>
+                              <h4>[[${item.itemNm}]]</h4>
                                 <div class="price">
-                                    <ul>
-                                        <!--                    상품가격-->
-                                        <li>[[${item.price}]]원</li>
-                                        <!--                    <li class="discount">$60.00</li>-->
-                                    </ul>
+                                    <h5>[[${item.price}]]원</h5>
                                 </div>
                             </div>
+                            </a>
                         </div>
 
                     </div>

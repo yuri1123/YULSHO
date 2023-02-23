@@ -1,6 +1,7 @@
 package com.yuri.shoppingsite.controller;
 
 import com.yuri.shoppingsite.domain.shop.ItemDTO;
+import com.yuri.shoppingsite.domain.shop.ItemFormDto;
 import com.yuri.shoppingsite.domain.shop.ItemSearchDto;
 import com.yuri.shoppingsite.domain.shop.MainItemDto;
 import com.yuri.shoppingsite.service.ItemService;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -35,6 +37,14 @@ public class ShoppingController {
         model.addAttribute("itemSearchDto", itemSearchDto);
         model.addAttribute("maxPage", 5);
         return "shopping/shopping";
+    }
+
+    //상품 상세보기로 가기
+    @GetMapping(value="/item/{itemId}")
+    public String itemDtl(Model model, @PathVariable("itemId") Long itemId){
+        ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
+        model.addAttribute("item", itemFormDto);
+        return "shopping/itemDtl";
     }
 
 
