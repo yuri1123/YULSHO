@@ -1,5 +1,5 @@
 <!doctype html>
-<html lagn="ko" xmlns:th="http://www.thymeleaf.org"
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
   <th:block th:include="/include/common_css.html"></th:block>
@@ -56,13 +56,28 @@
     }
   </style>
 
+<script th:inline="javascript">
+  $(documnet).ready(function(){
+    $("#searchBtn").on("click", function (e){
+      e.preventDefault();
+      page(0);
+    });
+  });
 
+  function page(page){
+    let searchDateType = $("#searchDateType").val();
+    let searchSellStatus = $("#searchSellStatus").val();
+    let searchBy = $("#searchBy").val();
+    let searchQuery = $("#searchQuery").val();
 
+    location.href="admin/productlist/" + page + "?searchDateType="+searchDateType
+    +"&searchSellStatus=" + searchSellStatus
+    +"&searchBy=" + searchBy
+    +"&searchQuery=" + searchQuery;
+  }
+</script>
 </head>
 <body>
-<!-- Preloader Start -->
-<!--<th:block th:include="/include/preloader.html"></th:block>-->
-
 <th:block th:include="/include/header.html"></th:block>
 
 <div class="container-fluid">
@@ -75,94 +90,88 @@
       <button class="btn-primary backcol rad"><a th:href="@{/admin/uploadproduct}">상품 등록하기</a></button>
     </div>
 
-<!--    &lt;!&ndash;        검색하기&ndash;&gt;-->
-<!--    <div class="col-lg-4 col-md-5 offset-lg-7 offset-6 pb-4">-->
-<!--      <div class="input-group">-->
-<!--        <input type="text" id="search_kw" class="form-control mar" th:value="${kw}">-->
-<!--        <button class="btn-primary backcol rad" type="button" id="btn_search">찾기</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
 
+<!--    <form th:action="@{'/admin/productlist/'+${items.number}}" role="form" method="get" th:object="${items}">-->
   <div class="col-lg-10 col-md-10 col-sm-10 offset-1">
     <table class="table table">
       <thead class="text-center">
       <tr>
-        <th>NO</th>
-        <th>TITLE</th>
-        <th>WRITER</th>
-        <th>DATE</th>
+        <th>상품아이디</th>
+        <th>상품명</th>
+        <th>상태</th>
+        <th>등록자</th>
+        <th>등록일</th>
       </tr>
       </thead>
       <tbody class="text-center">
-<!--      <tr th:each="list:${paging}">-->
-<!--        <td th:text="${list.id}">NO</td>-->
-<!--        <td><a th:href="@{|/community/qnadetail/${list.id}|}" th:text="${list.subject}" class="black-color hover">TITLE</a>-->
-<!--          &lt;!&ndash;                    댓글개수 표시하기&ndash;&gt;-->
-<!--          <span class="text-danger small ms-2"-->
-<!--                th:if="${#lists.size(list.answerList) > 0}"-->
-<!--                th:text="${#lists.size(list.answerList)}">-->
-<!--                    </span>-->
-<!--        </td>-->
-<!--        <td th:if="${list.author !=null}" th:text="${list.author.username}"}>WRITER</td>-->
-<!--        <td th:text="${list.createDate}"}>DATE</td>-->
+      <tr th:each="item, status:${items.getContent()}">
+        <td th:text="${item.id}"></td>
+        <td>
+          <a th:href="'/admin/productlist/'+${item.id}" th:text="${item.itemNm}" class="black-color hover"></a>
+        </td>
+        <td th:text="${item.itemSellStatus == T(com.yuri.shoppingsite.constant.ItemSellStatus).SELL} ? '판매중' : '품절'"></td>
+        <td th:text="${item.createBy}"}></td>
+        <td th:text="${item.regTime}"}></td>
       </tr>
       </tbody>
     </table>
   </div>
 
-  <div class="col-lg-10 col-md-10 col-sm-10 offset-1 fontcolors">
-<!--    &lt;!&ndash;        페이징 처리 시작&ndash;&gt;-->
-<!--    <div th:if="${!paging.isEmpty()}">-->
-<!--      &lt;!&ndash;          이전 &ndash;&gt;-->
-<!--      <ul class="pagination justify-content-center">-->
-<!--        <li class="page-item" th:classappend="${!paging.hasPrevious()}?'disabled'">-->
-<!--          <a class="page-link" href="javascript:void(0)" th:data-page="${paging.number-1}">-->
-<!--            <span>이전</span>-->
-<!--          </a>-->
-<!--        </li>-->
-<!--        &lt;!&ndash;                중간&ndash;&gt;-->
-<!--        <li th:each="page:${#numbers.sequence(0, paging.totalPages-1)}"-->
-<!--            th:if="${page >= paging.number-5 and page <=paging.number+5}"-->
-<!--            th:classappend="${page==paging.number} ? 'active'" class="page-item">-->
-<!--          <a th:text="${page}" class="page-link" href="javascript:void(0)" th:data-page="${page}"></a>-->
-<!--        </li>-->
-<!--        &lt;!&ndash;                다음&ndash;&gt;-->
-<!--        <li class="page-item" th:classappend="${!paging.hasNext()} ? 'disabled'">-->
-<!--          <a class="page-link" href="javascript:void(0)" th:data-page="${paging.number+1}">-->
-<!--            <span>다음</span>-->
-<!--          </a>-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--    </div>-->
-<!--    &lt;!&ndash;페이징처리 끝&ndash;&gt;-->
+  <div class="col-lg-10 col-md-10 col-sm-10 offset-1">
+    <!--        페이징 처리 시작-->
+    <div th:with="start=${(items.number/maxPage)*maxPage +1},
+    end=(${(items.totalPages == 0) ? 1 : (start + (maxPage -1) < items.totalPages
+          ? start + (maxPage - 1) : items.totalPages)})">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" th:classappend="${items.first}?'disabled'">
+        <a th:onclick="'javascript:page(' + ${items.number - 1 } + ')'" aria-label='Previous' class="page-link">
+          <span aria-hidden="true">Previous</span>
+        </a>
+      </li>
+      <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}"
+          th:classappend="${items.number eq page - 1}? 'active' : ''">
+        <a th:onclick="'javascript:page(' + ${page - 1} + ')'"
+           th:inline="text" class="page-link">[[${page}]</a>
+      </li>
+      <li class="page-item" th:classappend="${items.last}?'disabled'">
+        <a th:onclick="'javascript:page(' + ${items.number + 1} + ')'" aria-label='Next' class="page-link">
+          <span aria-hidden="true">Next</span>
+        </a>
+      </li>
+     </ul>
+    </div>
 
-<!--    &lt;!&ndash;            page,kw get요청&ndash;&gt;-->
-<!--    <form th:action="@{/community/qna}" method="get" id="searchForm">-->
-<!--      <input type="hidden" id="kw" name="kw" th:value="${kw}">-->
-<!--      <input type="hidden" id="page" name="page" th:value="${paging.number}">-->
+    <!--        검색하기-->
+    <div class="col-lg-4 col-md-5 offset-lg-7 offset-6 pb-4">
+
+      <div class="form-inline justify-content-center" th:object = "${itemSearchDto}">
+        <select th:field="*{searchDataType}" class="form-control" style="width: auto;">
+          <option value="all">전체기간</option>
+          <option value="1d">1일</option>
+          <option value="1w">1주</option>
+          <option value="1m">1개월</option>
+          <option value="6m">6개월</option>
+        </select>
+
+        <select th:field="*{searchSellStatus}" class="form-control" style="width: auto;">
+          <option value="">판매상태(전체)</option>
+          <option value="SELL">판매중</option>
+          <option value="SOLD_OUT">품절</option>
+        </select>
+
+        <select th:field="*{searchBy}" class="form-control" style="width: auto;">
+          <option value="itemNm">상품명</option>
+          <option value="createdBy">등록자</option>
+        </select>
+        <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
+        <button id ="searchBtn" type="submit" class="btn btn-primary">검색</button>
+      </div>
+
+    </div>
+  </div>
 <!--    </form>-->
-<!--  </div>-->
-
-<!--  <script>-->
-<!--    const page_elements = document.getElementsByClassName("page-link");-->
-<!--    Array.from(page_elements).forEach(function(element) {-->
-<!--      element.addEventListener('click', function() {-->
-<!--        document.getElementById('page').value = this.dataset.page;-->
-<!--        document.getElementById('searchForm').submit();-->
-<!--      });-->
-<!--    });-->
-<!--    const btn_search = document.getElementById("btn_search");-->
-<!--    btn_search.addEventListener('click', function() {-->
-<!--      document.getElementById('kw').value = document.getElementById('search_kw').value;-->
-<!--      document.getElementById('page').value = 0;  // 검색버튼을 클릭할 경우 0페이지부터 조회한다.-->
-<!--      document.getElementById('searchForm').submit();-->
-<!--    });-->
-<!--  </script>-->
-
-
 </div>
-
+</div>
 </body>
 </html>
 
