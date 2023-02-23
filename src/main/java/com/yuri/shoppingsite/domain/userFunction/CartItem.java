@@ -5,7 +5,6 @@ import com.yuri.shoppingsite.domain.shop.Item;
 import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.ibatis.annotations.Many;
 
 import javax.persistence.*;
 

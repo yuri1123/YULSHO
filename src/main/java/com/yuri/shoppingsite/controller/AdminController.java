@@ -29,11 +29,7 @@ public class AdminController {
     private final ItemService itemService;
 
 
-    //상품 관리 페이지로 가기리스트)
-    @GetMapping("admin/productlist")
-    public String manProducts() {
-        return "/admin/productlist";
-    }
+
 
     //상품 등록 페이지로 가기(insert)
     @GetMapping("admin/uploadproduct")
@@ -107,14 +103,14 @@ public class AdminController {
 
     //상품관리 페이지 이동
     //value에 상품 관리 화면 진입시 URL에 페이지 번호가 없는 경우와 페이지 번호가 있는 경우 2가지를 매핑한다.
-    @GetMapping(value = {"admin/items","admin/items/{page}"})
+    @GetMapping(value = {"/admin/items","/admin/items/{page}"})
     public String itemManage(ItemSearchDto itemSearchDto,
                              @PathVariable("page") Optional<Integer> page,
                              Model model){
         //페이징을 위해 PageRequest.of 메소드를 통해 Pageable 객체를 생성한다.
         //첫번째 파라미터로는 조회할 때 페이지 번호, 두번째 파라미터로는 한번에 가지고 올 데이터 수를 넣음
         //URL 경로에 페이지 번호가 있으면 해당 페이지를 조회하도록 셋팅하고, 페이지 번호가 없으면 0페이지 조회
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 2);
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
         //조회 조건과 페이징 정보를 파라미터로 넘겨서 Page<Item> 객체를 반환 받음
         Page<Item> items = itemService.getAdminItemPage(itemSearchDto, pageable);
         //조회한 상품 데이터 및 페이징 정보를 뷰에 전달
@@ -122,7 +118,13 @@ public class AdminController {
         //페이지 전환시 기존 검색 조건을 유지한 채 이동할 수 있도록 뷰에 다시 전달함
         model.addAttribute("itemSearchDto", itemSearchDto);
         //상품관리 메뉴 하단에 보여줄 최대 페이지 번호의 개수이다. 5로 설정하면 최대 5개의 이동할 페이지 번호만 보여준다.
-        model.addAttribute("maxPage",5);
+        model.addAttribute("maxPage",3);
         return "admin/productlist";
     }
+
+
+
+
+
+
 }
