@@ -2,11 +2,10 @@ package com.yuri.shoppingsite.service;
 
 import com.yuri.shoppingsite.Repository.ItemImgRepository;
 import com.yuri.shoppingsite.Repository.ItemRepository;
-import com.yuri.shoppingsite.domain.shop.Item;
-import com.yuri.shoppingsite.domain.shop.ItemFormDto;
-import com.yuri.shoppingsite.domain.shop.ItemImg;
-import com.yuri.shoppingsite.domain.shop.ItemImgDto;
+import com.yuri.shoppingsite.domain.shop.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -85,4 +84,12 @@ public class ItemService {
         }
     return item.getId();
     }
+
+    @Transactional(readOnly = true)
+    public Page<Item> getAdminItemPage(ItemSearchDto itemSearchDto, Pageable pageable){
+        return itemRepository.getAdminItemPage(itemSearchDto, pageable);
+    }
+
+
+
 }
