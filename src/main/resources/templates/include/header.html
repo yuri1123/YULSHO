@@ -36,6 +36,7 @@
 <!--                          <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>-->
 <!--                      </div>-->
 <!--                  </li>-->
+                 <li sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/adminmain">관리자페이지</a></li>
                 <li><a href="/member/login.html">마이페이지</a></li>
                 <li><a href="cart.html">장바구니</a></li>
                 <li><a href="/community/noticelist">커뮤니티</a></li>
@@ -95,7 +96,7 @@
 <!--                      <li><a href="single-blog.html">Blog Details</a></li>-->
 <!--                    </ul>-->
                   </li>
-                  <li sec:authorize="isAuthenticated()"><a th:href="@{/shopping/test}">빈페이지임</a>
+                  <li sec:authorize="isAuthenticated()"><a th:href="@{/orders}">빈페이지임</a>
                     <ul class="submenu">
                       <li><a href="login.html">Login</a></li>
                       <li><a href="cart.html">Card</a></li>

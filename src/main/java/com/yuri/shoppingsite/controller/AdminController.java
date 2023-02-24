@@ -28,6 +28,13 @@ public class AdminController {
 
     private final ItemService itemService;
 
+    //관리자 페이지로 가기
+    @GetMapping("admin/adminmain")
+    public String adminmain(){
+        return "admin/adminmain";
+    }
+
+
     //상품 등록 페이지로 가기(insert)
     @GetMapping("admin/uploadproduct")
     public String itemForm(Model model) {
@@ -103,12 +110,12 @@ public class AdminController {
     @GetMapping(value = {"/admin/items","/admin/items/{page}"})
     public String itemManage(ItemSearchDto itemSearchDto, @PathVariable("page") Optional<Integer> page, Model model){
 
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
         Page<Item> items = itemService.getAdminItemPage(itemSearchDto, pageable);
 
         model.addAttribute("items", items);
         model.addAttribute("itemSearchDto", itemSearchDto);
-        model.addAttribute("maxPage", 5);
+        model.addAttribute("maxPage", 10);
 
         return "admin/productlist";
     }
