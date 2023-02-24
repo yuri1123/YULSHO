@@ -1,8 +1,6 @@
-package com.yuri.shoppingsite.domain.userFunction;
+package com.yuri.shoppingsite.domain.shop;
 
 import com.yuri.shoppingsite.domain.common.BaseEntity;
-import com.yuri.shoppingsite.domain.shop.Item;
-import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -2,6 +2,7 @@ package com.yuri.shoppingsite.domain.userFunction;
 
 import com.yuri.shoppingsite.Repository.CartRepository;
 import com.yuri.shoppingsite.Repository.MemberRepository;
+import com.yuri.shoppingsite.domain.shop.Cart;
 import com.yuri.shoppingsite.domain.user.Member;
 import com.yuri.shoppingsite.domain.user.MemberFormDto;
 import org.junit.jupiter.api.DisplayName;
