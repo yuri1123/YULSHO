@@ -4,10 +4,9 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.yuri.shoppingsite.constant.Role;
-import com.yuri.shoppingsite.domain.shop.*;
 import com.yuri.shoppingsite.domain.user.Member;
+import com.yuri.shoppingsite.domain.user.MemberSearchDto;
 import com.yuri.shoppingsite.domain.user.QMember;
-import org.codehaus.groovy.util.StringUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -63,7 +62,7 @@ public class MemberRepositoryCustomImpl implements MemberRepositoryCustom {
                             searchRoleStatusEq(memberSearchDto.getSearchRoleStatus()),
                             searchByLike(memberSearchDto.getSearchBy(),
                                     memberSearchDto.getSearchQuery()))
-                    .orderBy(QMember.member.regTime.desc())
+                    .orderBy(QMember.member.id.desc())
                     .offset(pageable.getOffset())
                     .limit(pageable.getPageSize())
                     .fetch();

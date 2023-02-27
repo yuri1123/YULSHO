@@ -4,7 +4,7 @@ import com.yuri.shoppingsite.Repository.MemberRepository;
 import com.yuri.shoppingsite.domain.shop.Item;
 import com.yuri.shoppingsite.domain.shop.ItemFormDto;
 import com.yuri.shoppingsite.domain.shop.ItemSearchDto;
-import com.yuri.shoppingsite.domain.shop.MemberSearchDto;
+import com.yuri.shoppingsite.domain.user.MemberSearchDto;
 import com.yuri.shoppingsite.domain.user.Member;
 import com.yuri.shoppingsite.service.ItemService;
 import com.yuri.shoppingsite.service.MemberService;

@@ -1,9 +1,7 @@
 package com.yuri.shoppingsite.service;
 
 import com.yuri.shoppingsite.Repository.MemberRepository;
-import com.yuri.shoppingsite.domain.shop.Item;
-import com.yuri.shoppingsite.domain.shop.ItemSearchDto;
-import com.yuri.shoppingsite.domain.shop.MemberSearchDto;
+import com.yuri.shoppingsite.domain.user.MemberSearchDto;
 import com.yuri.shoppingsite.domain.user.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
