@@ -148,12 +148,15 @@
           <td>
 
           <select>
-            <th:block >
-              <option th:if="${member.role == T(com.yuri.shoppingsite.constant.Role).ADMIN}" th:value="ADMIN" selected>운영자</option>
-              <option th:value="회원">USER</option>
+            <th:block>
+              <option th:value="ADMIN" th:if="${member.role == T(com.yuri.shoppingsite.constant.Role).ADMIN}" selected>운영자</option>
+              <option th:value="USER">USER</option>
+            </th:block>
+            <th:block>
+              <option th:value="ADMIN" selected>운영자</option>
+              <option th:value="USER" th:if="${member.role == T(com.yuri.shoppingsite.constant.Role).USER}" selected>회원</option>
             </th:block>
           </select>
-
           </td>
 
           <td th:text="${member.regTime}"></td>
