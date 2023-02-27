@@ -13,8 +13,9 @@
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
-  background: #f6f9ff;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  font-weight: 400;
+  background: #ffffff;
   color: #444444;
 }
 
@@ -34,7 +35,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Nunito", sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  font-weight: 200;
 }
 
 /*--------------------------------------------------------------
@@ -62,7 +64,7 @@ h6 {
 .pagetitle h1 {
   font-size: 24px;
   margin-bottom: 0;
-  font-weight: 600;
+  font-weight: 200;
   color: #012970;
 }
 
@@ -253,7 +255,8 @@ h6 {
   font-size: 18px;
   font-weight: 500;
   color: #012970;
-  font-family: "Poppins", sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  font-weight: 200;
 }
 
 .card-title span {
@@ -272,8 +275,9 @@ h6 {
 
 /* Alerts */
 .alert-heading {
-  font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+
   font-size: 20px;
 }
 
@@ -322,9 +326,9 @@ h6 {
 /* Breadcrumbs */
 .breadcrumb {
   font-size: 14px;
-  font-family: "Nunito", sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
   color: #899bbd;
-  font-weight: 600;
+  font-weight: 200;
 }
 
 .breadcrumb a {
@@ -387,9 +391,9 @@ h6 {
 
 .logo span {
   font-size: 26px;
-  font-weight: 700;
+  font-weight: 200;
   color: #012970;
-  font-family: "Nunito", sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
 .header {

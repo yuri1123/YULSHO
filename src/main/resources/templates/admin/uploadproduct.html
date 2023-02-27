@@ -1,8 +1,10 @@
-<!doctype html>
-<html lang="ko" xmlns:th="http://www.thymleaf.org">
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
-    <th:block th:include="include/common_css"></th:block>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <th:block th:include="/include/admin_head.html"></th:block>
+    <th:block th:include="/include/common_css.html"></th:block>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
     <style>
         #gap {
             margin-top: 80px;
@@ -64,7 +66,9 @@
 </head>
 <body>
 
-<th:block th:include="/include/header.html"></th:block>
+<th:block th:include="/include/admin_header.html"/>
+<th:block th:include="/include/admin_sidebar.html"/>
+
 
 <script th:inline="javascript">
     //상품 등록시 실패 메시지를 받아서 상품 등록 페이지에 재진입시 alert를 통해 실패 사유를 보여줌
@@ -201,5 +205,10 @@
 
 </div>
 </div>
+
+<th:block th:include="/include/admin_footer.html"/>
+<th:block th:include="/include/admin_js.html"/>
+
+
 </body>
 </html>

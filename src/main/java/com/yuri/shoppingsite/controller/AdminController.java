@@ -117,7 +117,7 @@ public class AdminController {
         model.addAttribute("itemSearchDto", itemSearchDto);
         model.addAttribute("maxPage", 10);
 
-        return "admin/productlist";
+        return "admin/product";
     }
 
 
