@@ -6,7 +6,7 @@
     <th:block th:include="/include/common_css.html"></th:block>
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
     <style>
-        #gap {
+        .gap {
             margin-top: 80px;
             margin-bottom: 50px;
         }
@@ -101,10 +101,28 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-10 col-md-10 col-sm-10 offset-1 gap">
-            <h5 class="my-3 border-bottom pb-2">상품등록</h5>
+
+
+        <div class="col-lg-12 col-md-12 col-sm-12 gap">
+        <th:block th:if="${pagestate == '등록'}">
+        <h1 class="text-center">신규 상품 등록</h1>
+        </th:block>
+         <th:block th:unless="${pagestate == '등록'}">
+        <h1 class="text-center">상품 상세/수정</h1>
+         </th:block>
+        </div>
+
+        <div  class="col-lg-10 col-md-10 col-sm-10 offset-1 gap">
+            <th:block th:if="${pagestate == '등록'}">
+            <h5 class="my-3 border-bottom pb-2">상품 등록</h5>
+            </th:block>
+            <th:block th:unless="${pagestate == '등록'}">
+            <h5 class="my-3 border-bottom pb-2">상품 상세/수정</h5>
+            </th:block>
         </div>
         <!--    th:action="@{/question/create}"-->
+
+
 
         <div class="col-lg-10 col-md-10 col-sm-10 offset-1 mb-2">
 <!--            파일을 전송할 때는 enctype(인코딩타입)값으로 multipart/form-data를 입력-->
@@ -182,7 +200,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-md-2 col-sm-2 offset-10 gap2">
+                <div class="col-3 offset-9">
 <!--                    상품 아이디가 없는 경우(상품을 처음 등록할 경우) 저장 로직을 호출하는 버튼을 보여준다-->
                      <div th:if="${#strings.isEmpty(itemFormDto.id)}"
                               style="text-align: center">

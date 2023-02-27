@@ -1,8 +1,14 @@
 package com.yuri.shoppingsite.service;
 
 import com.yuri.shoppingsite.Repository.MemberRepository;
+import com.yuri.shoppingsite.domain.shop.Item;
+import com.yuri.shoppingsite.domain.shop.ItemSearchDto;
+import com.yuri.shoppingsite.domain.shop.MemberSearchDto;
 import com.yuri.shoppingsite.domain.user.Member;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,6 +24,7 @@ import javax.transaction.Transactional;
 public class MemberService implements UserDetailsService {
 
     //멤버의 상태를 저장함(중복되지 않는)
+    @Autowired
     private final MemberRepository memberRepository;
     public Member saveMember(Member member) {
         validateDuplicateMember(member);
@@ -54,8 +61,9 @@ public class MemberService implements UserDetailsService {
 
     }
 
-
-
+    public Page<Member> getMemberAuth(MemberSearchDto memberSearchDto,Pageable pageable){
+        return memberRepository.getAdminMemberPage(memberSearchDto, pageable);
+    }
 
 }
 

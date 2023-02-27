@@ -1,10 +1,15 @@
 package com.yuri.shoppingsite.controller;
 
+import com.yuri.shoppingsite.Repository.MemberRepository;
 import com.yuri.shoppingsite.domain.shop.Item;
 import com.yuri.shoppingsite.domain.shop.ItemFormDto;
 import com.yuri.shoppingsite.domain.shop.ItemSearchDto;
+import com.yuri.shoppingsite.domain.shop.MemberSearchDto;
+import com.yuri.shoppingsite.domain.user.Member;
 import com.yuri.shoppingsite.service.ItemService;
+import com.yuri.shoppingsite.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +32,9 @@ import java.util.Optional;
 public class AdminController {
 
     private final ItemService itemService;
+    private final MemberRepository memberRepository;
+    @Autowired
+    private final MemberService memberService;
 
     //관리자 페이지로 가기
     @GetMapping("admin/adminmain")
@@ -35,15 +43,34 @@ public class AdminController {
     }
 
 
+    //상품관리
+
+    //상품관리 페이지 이동
+    //value에 상품 관리 화면 진입시 URL에 페이지 번호가 없는 경우와 페이지 번호가 있는 경우 2가지를 매핑한다.
+    @GetMapping(value = {"/admin/items","/admin/items/{page}"})
+    public String itemManage(ItemSearchDto itemSearchDto, @PathVariable("page") Optional<Integer> page, Model model){
+
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
+        Page<Item> items = itemService.getAdminItemPage(itemSearchDto, pageable);
+
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        model.addAttribute("maxPage", 10);
+
+        return "admin/productlist";
+    }
+
+
     //상품 등록 페이지로 가기(insert)
     @GetMapping("admin/uploadproduct")
     public String itemForm(Model model) {
         model.addAttribute("itemFormDto", new ItemFormDto());
+        model.addAttribute("pagestate", "등록");
         return "admin/uploadproduct";
     }
 
     //상품 상세 페이지로 가기
-    @GetMapping("admin/uploadproduct/{itemId}")
+    @GetMapping("admin/item/{itemId}")
     public String itemDtl(@PathVariable("itemId") Long itemId, Model model){
         try {
             ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
@@ -51,6 +78,7 @@ public class AdminController {
         } catch(EntityNotFoundException e){
             model.addAttribute("errorMessage","존재하지 않는 상품입니다.");
             model.addAttribute("itemFormDto", new ItemFormDto());
+            model.addAttribute("pagestate", "상세");
             return "admin/uploadproduct";
         }
         return "admin/uploadproduct";
@@ -105,21 +133,27 @@ public class AdminController {
         return "redirect:/admin/items";
     }
 
-    //상품관리 페이지 이동
-    //value에 상품 관리 화면 진입시 URL에 페이지 번호가 없는 경우와 페이지 번호가 있는 경우 2가지를 매핑한다.
-    @GetMapping(value = {"/admin/items","/admin/items/{page}"})
-    public String itemManage(ItemSearchDto itemSearchDto, @PathVariable("page") Optional<Integer> page, Model model){
+    //기본 정보 관리
+
+    //자사 정보 관리
+
+    //유저 권한 관리
+    //유저 권한 관리 페이지로 이동
+
+    @GetMapping(value = {"/admin/userauth","/admin/userauth/{page}"})
+    public String userAuth(MemberSearchDto memberSearchDto, @PathVariable("page") Optional<Integer> page, Model model){
 
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
-        Page<Item> items = itemService.getAdminItemPage(itemSearchDto, pageable);
-
-        model.addAttribute("items", items);
-        model.addAttribute("itemSearchDto", itemSearchDto);
+        Page<Member> members = memberService.getMemberAuth(memberSearchDto,pageable);
+        model.addAttribute("members", members);
+        model.addAttribute("memberSearchDto", memberSearchDto);
         model.addAttribute("maxPage", 10);
 
-        return "admin/product";
+        return "admin/userauthority";
     }
 
 
 
-}
+
+
+    }
