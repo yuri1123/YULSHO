@@ -93,4 +93,22 @@ public class OrderService {
         order.cancelOrder();
     }
 
+    public Long orders(List<OrderDto> orderDtoList, String name){
+        Member member = memberRepository.findByName(name);
+        List<OrderItem> orderItemList = new ArrayList<>();
+        //주문할 상품 리스트 만들어 줌
+        for(OrderDto orderDto : orderDtoList){
+            Item item = itemRepository.findById(orderDto.getItemId())
+                    .orElseThrow(EntityNotFoundException::new);
+            //현재 로그인한 회원과 주문 상품 목록을 이용하여 주문 엔티티 생성
+            OrderItem orderItem =
+                    OrderItem.createOrderItem(item, orderDto.getCount());
+            orderItemList.add(orderItem);
+        }
+        Order order = Order.createOrder(member, orderItemList);
+        //주문 데이터 저장
+        orderRepository.save(order);
+        return order.getId();
+    }
+
 }

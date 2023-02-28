@@ -38,7 +38,7 @@
 <!--                  </li>-->
                  <li sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/adminmain">관리자페이지</a></li>
                 <li><a href="/member/login.html">마이페이지</a></li>
-                <li><a href="cart.html">장바구니</a></li>
+                <li><a th:href="@{/cart}">장바구니</a></li>
                 <li><a href="/community/noticelist">커뮤니티</a></li>
                   <li sec:authorize="isAnonymous()">
                       <a th:href="@{/member/login}">로그인</a>
@@ -73,14 +73,14 @@
 <!--              <a href="../index.html"><img src="../assets/img/logo/logo.png" alt=""></a>-->
             </div>
           </div>
-          <div class="col-xl-7 col-lg-8 col-md-7 col-sm-5">
+          <div class="col-xl-7 col-lg-8 col-md-7 col-sm-5 ">
             <!-- Main-menu -->
             <div class="main-menu f-right d-none d-lg-block">
               <nav>
                 <ul id="navigation">
-                  <li class="hot"><a href="/">베스트셀러</a></li>
-                  <li><a href="board">최신상품</a></li>
-                  <li><a href="/shopping/shopping">전체상품</a>
+                  <li class="hot"><a href="/">BESTSELLER</a></li>
+                  <li><a href="board">LATEST</a></li>
+                  <li><a href="/shopping/shopping">PRODUCTS</a>
                     <ul class="submenu">
                       <li><a href="product_list.html">DIARY</a></li>
                       <li><a href="single-product.html">WALL DECO</a></li>
@@ -90,13 +90,13 @@
                       <li><a href="single-product.html">ACCESSORY</a></li>
                     </ul>
                   </li>
-                  <li><a href="blog.html">세일상품</a>
+                  <li><a href="blog.html">SALES</a>
 <!--                    <ul class="submenu">-->
 <!--                      <li><a href="blog.html">Blog</a></li>-->
 <!--                      <li><a href="single-blog.html">Blog Details</a></li>-->
 <!--                    </ul>-->
                   </li>
-                  <li sec:authorize="isAuthenticated()"><a th:href="@{/orders}">빈페이지임</a>
+                  <li sec:authorize="isAuthenticated()"><a th:href="@{/orders}">PURCHASE</a>
                     <ul class="submenu">
                       <li><a href="login.html">Login</a></li>
                       <li><a href="cart.html">Card</a></li>
@@ -108,7 +108,7 @@
                     </ul>
                   </li>
                   <li sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-                      <a th:href="@{/admin/items}">상품관리등록</a>
+                      <a th:href="@{/admin/items}">ENROLL</a>
                   </li>
                 </ul>
               </nav>
