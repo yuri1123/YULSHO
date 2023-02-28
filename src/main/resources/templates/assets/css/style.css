@@ -3464,21 +3464,21 @@ input:focus {
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   /* line 21, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
   .header-area .header-bottom {
-    padding: 12px 25px;
+    padding: 40px 25px;
   }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   /* line 21, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
   .header-area .header-bottom {
-    padding: 22px 25px;
+    padding: 40px 25px;
   }
 }
 
 @media (max-width: 767px) {
   /* line 21, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
   .header-area .header-bottom {
-    padding: 22px 25px;
+    padding: 40px 25px;
   }
 }
 
@@ -3523,7 +3523,7 @@ input:focus {
   text-transform: capitalize;
   padding: 39px 18px;
   display: block;
-  font-size: 14px;
+  font-size: 17px;
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
