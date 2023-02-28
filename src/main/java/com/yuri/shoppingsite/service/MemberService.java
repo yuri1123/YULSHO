@@ -1,6 +1,8 @@
 package com.yuri.shoppingsite.service;
 
 import com.yuri.shoppingsite.Repository.MemberRepository;
+import com.yuri.shoppingsite.constant.Role;
+import com.yuri.shoppingsite.domain.shop.CartItem;
 import com.yuri.shoppingsite.domain.user.MemberSearchDto;
 import com.yuri.shoppingsite.domain.user.Member;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +14,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.util.StringUtils;
 
-import javax.transaction.Transactional;
+import javax.persistence.EntityNotFoundException;
 
 @Service
 @Transactional //비즈니스 로직 담당 서비스 계층 클래스에 선언, 로직 처리시 에러가 발생하면
@@ -59,8 +63,33 @@ public class MemberService implements UserDetailsService {
 
     }
 
+    @Transactional(readOnly = true)
+    public boolean validateMember(String name){
+        //현재 로그인한 회원의 권한 가져오기
+        Role member = memberRepository.findByName(name).getRole();
+        //현재 로그인한 회원이 ADMIN인지 admin이면 true, 아니면 false 반환
+        if(!StringUtils.equals(member,
+                com.yuri.shoppingsite.constant.Role.ADMIN)){
+            return false;
+        }
+        return true;
+    }
+
+
     public Page<Member> getMemberAuth(MemberSearchDto memberSearchDto,Pageable pageable){
         return memberRepository.getAdminMemberPage(memberSearchDto, pageable);
+    }
+
+    public void deleteMember(Long id){
+        Member member = memberRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+        memberRepository.delete(member);
+    }
+
+    public void updateMemberRole(Long id){
+        Member member = memberRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+        memberRepository.
     }
 
 }

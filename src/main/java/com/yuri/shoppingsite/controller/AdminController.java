@@ -1,6 +1,7 @@
 package com.yuri.shoppingsite.controller;
 
 import com.yuri.shoppingsite.Repository.MemberRepository;
+import com.yuri.shoppingsite.domain.shop.CartOrderDto;
 import com.yuri.shoppingsite.domain.shop.Item;
 import com.yuri.shoppingsite.domain.shop.ItemFormDto;
 import com.yuri.shoppingsite.domain.shop.ItemSearchDto;
@@ -13,17 +14,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -152,8 +153,34 @@ public class AdminController {
         return "admin/userauthority";
     }
 
+    //유저 권한 변경
+    @PatchMapping(value="/admin/member/{id}")
+    public @ResponseBody ResponseEntity updateMemberAuth(@PathVariable("id") Long id,
+                                                       Principal principal){
+        //현재 로그인한 회원의 role 가져와서 ADMIN인지 체크
+        if(!memberService.validateMember(principal.getName())){
+            return new ResponseEntity<String>("수정 권한이 없습니다.", HttpStatus.FORBIDDEN);
+        }
+
+        //장바구니 상품의 개수 업데이트
+        memberService.updateMemberRole(cartItemId, count);
+        return new ResponseEntity<Long>(cartItemId,HttpStatus.OK);
+    }
 
 
 
+
+    //유저 삭제
+    @DeleteMapping(value = "/admin/member/{id}")
+    public @ResponseBody ResponseEntity deleteMember(
+            @PathVariable("id") Long id, Principal principal){
+//        //삭제 권한 체크
+        if(!memberService.validateMember(principal.getName())){
+            return new ResponseEntity<String>("삭제 권한이 없습니다.", HttpStatus.FORBIDDEN);
+        }
+        //멤버 삭제
+        memberService.deleteMember(id);
+        return new ResponseEntity<Long>(id, HttpStatus.OK);
+    }
 
     }
