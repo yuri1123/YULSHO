@@ -146,22 +146,29 @@
           <td th:text="${member.name}"></td>
           <td th:text="${member.nickname}"></td>
           <td>
-
-          <select>
-            <th:block th:if="${member.role == T(com.yuri.shoppingsite.constant.Role).ADMIN}" >
-              <option th:value="ADMIN" selected>운영자</option>
-              <option th:value="USER" >회원</option>
-            </th:block>
-            <th:block th:unless="${member.role == T(com.yuri.shoppingsite.constant.Role).ADMIN}" >
-              <option th:value="ADMIN">운영자</option>
-              <option th:value="USER" selected>회원</option>
-            </th:block>
-          </select>
+                <span th:if="${member.role == T(com.yuri.shoppingsite.constant.Role).ADMIN}" class="badge badge-danger">관리자</span>
+               <span th:unless="${member.role == T(com.yuri.shoppingsite.constant.Role).ADMIN}" class="badge badge-primary">회원</span>
           </td>
 
           <td th:text="${member.regTime}"></td>
-          <td>권한변경</td>
-          <td>계정삭제</td>
+          <td>
+
+            <select>
+              <th:block th:if="${member.role == T(com.yuri.shoppingsite.constant.Role).ADMIN}" >
+                <option th:value="ADMIN" selected>관리자</option>
+                <option th:value="USER" >회원</option>
+              </th:block>
+              <th:block th:unless="${member.role == T(com.yuri.shoppingsite.constant.Role).ADMIN}" >
+                <option th:value="ADMIN">관리자</option>
+                <option th:value="USER" selected>회원</option>
+              </th:block>
+            </select>
+          </td>
+
+          </td>
+          <td><button>
+
+          </button></td>
 <!--          <td>-->
 <!--            <a th:href="'/admin/item/'+${item.id}" th:text="${item.itemNm}" class="black-color hover"></a>-->
 <!--          </td>-->
