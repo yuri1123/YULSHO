@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class MainItemDto {
+public class BestSellerItemDto {
 
     private Long id;
 
@@ -17,12 +17,14 @@ public class MainItemDto {
 
     private Integer price;
 
+    private int orderTotalCount; //주문총횟수
     @QueryProjection
-    public MainItemDto(Long id, String itemNm, String itemDetail, String imgUrl,Integer price){
+    public BestSellerItemDto(Long id, String itemNm, String itemDetail, String imgUrl, Integer price, Integer orderTotalCount){
         this.id = id;
         this.itemNm = itemNm;
         this.itemDetail = itemDetail;
         this.imgUrl = imgUrl;
         this.price = price;
+        this.orderTotalCount = getOrderTotalCount();
     }
 }

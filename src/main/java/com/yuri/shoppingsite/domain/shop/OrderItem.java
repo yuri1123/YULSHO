@@ -31,6 +31,8 @@ public class OrderItem extends BaseEntity {
     private int orderPrice; //주문가격
     private int count; //수량
 
+
+
 //    private LocalDateTime regTime;
 //    private LocalDateTime updateTime;
 
@@ -45,6 +47,7 @@ public class OrderItem extends BaseEntity {
         orderItem.setOrderPrice(item.getPrice());
         //주문 수량만큼 상품의 재고 수량을 감소시킨다.
         item.removeStock(count);
+        item.addOrderTotalCount(count);
         return orderItem;
     }
     //주문 가격과 주문 수량을 곱해서 해당 상품을 주문한 총 가격을 계산하는 메소드이다.
@@ -53,7 +56,9 @@ public class OrderItem extends BaseEntity {
     }
 
     public void cancel(){
+
         this.getItem().addStock(count);
+        this.getItem().removeOrderCount(count);
     }
 
     }

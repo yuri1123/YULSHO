@@ -36,12 +36,15 @@ public class Item extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private ItemSellStatus itemSellStatus; //상품 판매 상태
 
+    private int orderTotalCount; //주문총횟수
+
     public void updateItem(ItemFormDto itemFormDto){
         this.itemNm = itemFormDto.getItemNm();
         this.price = itemFormDto.getPrice();
         this.stockNumber = itemFormDto.getStockNumber();
         this.itemDetail = itemFormDto.getItemDetail();
         this.itemSellStatus = itemFormDto.getItemSellStatus();
+//        this.orderTotalCount = itemFormDto.getOrderTotalCount();
     }
 
     public void removeStock(int stockNumber){
@@ -58,6 +61,23 @@ public class Item extends BaseEntity {
 
     public void addStock(int stockNumber){
         this.stockNumber += stockNumber;
+    }
+
+
+    //주문 횟수를 증가시킨다.
+    public void addOrderTotalCount(int orderTotalCount){
+        this.orderTotalCount +=orderTotalCount;
+    }
+    //주문 횟수를 감소시킨다.
+    public void removeOrderCount(int orderCount){
+        int nowOrderCount = this.orderTotalCount - orderTotalCount;
+        //상품의 주문횟수는 음수가 될 수 없다. 예외작성
+        if(nowOrderCount <0){
+            throw new OutOfStockException("상품의 총주문횟수는 음수가 될 수 없습니다. ("+
+                    this.orderTotalCount + ")");
+        }
+        //주문 후 상품의 주문횟수를 다시 셋팅한다.
+        this.orderTotalCount = nowOrderCount;
     }
 
 }

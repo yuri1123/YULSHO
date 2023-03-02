@@ -3,7 +3,6 @@ package com.yuri.shoppingsite.domain.community;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 
 @Getter

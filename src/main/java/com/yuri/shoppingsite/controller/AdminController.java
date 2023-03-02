@@ -153,20 +153,20 @@ public class AdminController {
         return "admin/userauthority";
     }
 
-    //유저 권한 변경
-    @PatchMapping(value="/admin/member/{id}")
-    public @ResponseBody ResponseEntity updateMemberAuth(@PathVariable("id") Long id,
-                                                       Principal principal){
+//    //유저 권한 변경
+//    @PatchMapping(value="/admin/member/{id}")
+//    public @ResponseBody ResponseEntity updateMemberAuth(@PathVariable("id") Long id,
+//                                                       Principal principal){
         //현재 로그인한 회원의 role 가져와서 ADMIN인지 체크
-        if(!memberService.validateMember(principal.getName())){
-            return new ResponseEntity<String>("수정 권한이 없습니다.", HttpStatus.FORBIDDEN);
-        }
+//        if(!memberService.validateMember(principal.getName())){
+//            return new ResponseEntity<String>("수정 권한이 없습니다.", HttpStatus.FORBIDDEN);
+//        }
 
-        //장바구니 상품의 개수 업데이트
-        memberService.updateMemberRole(cartItemId, count);
-        return new ResponseEntity<Long>(cartItemId,HttpStatus.OK);
-    }
-
+//        //장바구니 상품의 개수 업데이트
+//        memberService.updateMemberRole(cartItemId, count);
+//        return new ResponseEntity<Long>(cartItemId,HttpStatus.OK);
+//    }
+//
 
 
 

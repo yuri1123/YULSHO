@@ -86,11 +86,11 @@ public class MemberService implements UserDetailsService {
         memberRepository.delete(member);
     }
 
-    public void updateMemberRole(Long id){
-        Member member = memberRepository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
-        memberRepository.
-    }
+//    public void updateMemberRole(Long id){
+//        Member member = memberRepository.findById(id)
+//                .orElseThrow(EntityNotFoundException::new);
+//        memberRepository.
+//    }
 
 }
 

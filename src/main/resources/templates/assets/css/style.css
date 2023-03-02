@@ -3517,13 +3517,13 @@ input:focus {
 
 /* line 84, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-bottom .main-menu ul li a {
-  font-size: 16px;
   color: #000000;
   display: inline-block;
   text-transform: capitalize;
   padding: 39px 18px;
   display: block;
-  font-size: 17px;
+  font-size: 19px;
+  font-weight:600;
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
