@@ -63,4 +63,13 @@ public class MemberController {
         return "member/login";
     }
 
+    //마이페이지로 이동
+    @GetMapping("/mypage")
+    public String mypage(Model model){
+
+        return "member/mypage";
+    }
+
+
+
 }

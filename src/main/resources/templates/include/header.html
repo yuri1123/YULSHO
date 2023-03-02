@@ -37,7 +37,7 @@
 <!--                      </div>-->
 <!--                  </li>-->
                  <li sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/adminmain">관리자페이지</a></li>
-                <li><a href="/member/login.html">마이페이지</a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{/member/mypage}">마이페이지</a></li>
                 <li><a th:href="@{/cart}">장바구니</a></li>
                 <li><a href="/community/noticelist">커뮤니티</a></li>
                   <li sec:authorize="isAnonymous()">
@@ -66,14 +66,14 @@
     </div>
     <div class="header-bottom header-sticky">
       <div class="container-fluid">
-        <div class="row align-items-center justify-content-center">
+        <div class="row align-items-center">
           <!-- Logo -->
 <!--          <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">-->
 <!--            <div class="logo">-->
 <!--              <a href="../index.html"><img src="../assets/img/logo/logo.png" alt=""></a>-->
 <!--            </div>-->
 <!--          </div>-->
-          <div class="col-xl-7 col-lg-8 col-md-7 col-sm-5 ">
+          <div class="col-10 offset-1 align-items-center justify-content-center text-center">
             <!-- Main-menu -->
             <div class="main-menu d-none d-lg-block">
               <nav>
