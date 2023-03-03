@@ -133,17 +133,194 @@
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row">이름<img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
+                    <th scope="row">이름  <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
                     <td>
                         <input id="nickname" name="nickname" class="inputTypeText" type="text">
                     </td>
                 </tr>
 
+                <tr class="">
+                    <th scope="row">주소 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" class="" alt="필수"></th>
+                    <td>
+                        <input id="postcode1" name="postcode1" fw-filter="isLengthRange[1][14]" fw-label="우편번호1" fw-msg="" class="inputTypeText" placeholder="" readonly="readonly" maxlength="14" value="" type="text">                    <a href="#none" onclick="ZipcodeFinder.Opener.bind('postBtn', 'postcode1', 'postcode2', 'addr1', 'layer', 'ko_KR');" id="postBtn"><img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_zipcode.gif" alt="우편번호"></a><br>
+                        <input id="addr1" name="addr1" fw-filter="isFill" fw-label="주소" fw-msg="" class="inputTypeText" placeholder="" readonly="readonly" value="" type="text"> 기본주소<br>
+                        <input id="addr2" name="addr2" fw-filter="" fw-label="주소" fw-msg="" class="inputTypeText" placeholder="" value="" type="text"> 나머지주소                 </td>
+                </tr>
+                <tr class="">
+                    <th scope="row">일반전화 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" class="displaynone" alt="필수"></th>
+                    <td><select id="phone1" name="phone[]" fw-filter="isNumber&amp;isNumber" fw-label="일반전화" fw-alone="N" fw-msg="">
+                        <option value="02">02</option>
+                        <option value="031">031</option>
+                        <option value="032">032</option>
+                        <option value="033">033</option>
+                        <option value="041">041</option>
+                        <option value="042">042</option>
+                        <option value="043">043</option>
+                        <option value="044">044</option>
+                        <option value="051">051</option>
+                        <option value="052">052</option>
+                        <option value="053">053</option>
+                        <option value="054">054</option>
+                        <option value="055">055</option>
+                        <option value="061">061</option>
+                        <option value="062">062</option>
+                        <option value="063">063</option>
+                        <option value="064">064</option>
+                        <option value="0502">0502</option>
+                        <option value="0503">0503</option>
+                        <option value="0504">0504</option>
+                        <option value="0505">0505</option>
+                        <option value="0506">0506</option>
+                        <option value="0507">0507</option>
+                        <option value="070">070</option>
+                        <option value="010">010</option>
+                        <option value="011">011</option>
+                        <option value="016">016</option>
+                        <option value="017">017</option>
+                        <option value="018">018</option>
+                        <option value="019">019</option>
+                        <option value="0508">0508</option>
+                    </select>-<input id="phone2" name="phone[]" maxlength="4" fw-filter="isNumber&amp;isNumber" fw-label="일반전화" fw-alone="N" fw-msg="" value="" type="text">-<input id="phone3" name="phone[]" maxlength="4" fw-filter="isNumber&amp;isNumber" fw-label="일반전화" fw-alone="N" fw-msg="" value="" type="text"></td>
+                </tr>
+                <tr class="">
+                    <th scope="row">휴대전화 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" class="displaynone" alt="필수"></th>
+                    <td><select id="mobile1" name="mobile[]" fw-filter="isNumber" fw-label="휴대전화" fw-alone="N" fw-msg="">
+                        <option value="010">010</option>
+                        <option value="011">011</option>
+                        <option value="016">016</option>
+                        <option value="017">017</option>
+                        <option value="018">018</option>
+                        <option value="019">019</option>
+                    </select>-<input id="mobile2" name="mobile[]" maxlength="4" fw-filter="isNumber" fw-label="휴대전화" fw-alone="N" fw-msg="" value="" type="text">-<input id="mobile3" name="mobile[]" maxlength="4" fw-filter="isNumber" fw-label="휴대전화" fw-alone="N" fw-msg="" value="" type="text"></td>
+                </tr>
 
+                <tr class="">
+                    <th scope="row">생년월일 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" class="displaynone" alt="필수"></th>
+                    <td><input id="birth_year" name="birth_year" fw-filter="" fw-label="생년월일" fw-msg="" class="inputTypeText" placeholder="" maxlength="4" value="" type="text"> 년 <input id="birth_month" name="birth_month" fw-filter="" fw-label="생년월일" fw-msg="" class="inputTypeText" placeholder="" maxlength="2" value="" type="text"> 월 <input id="birth_day" name="birth_day" fw-filter="" fw-label="생년월일" fw-msg="" class="inputTypeText" placeholder="" maxlength="2" value="" type="text"> 일 <span class="gIndent20 "><input id="is_solar_calendar0" name="is_solar_calendar" fw-filter="" fw-label="생년월일" fw-msg="" value="T" type="radio" checked="checked"><label for="is_solar_calendar0">양력</label>
+                                <input id="is_solar_calendar1" name="is_solar_calendar" fw-filter="" fw-label="생년월일" fw-msg="" value="F" type="radio"><label for="is_solar_calendar1">음력</label></span>
+                    </td>
+                </tr>
+
+                <tr class="displaynone">
+                    <th scope="row">환불계좌 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" class="displaynone" alt="필수"></th>
+                    <td>
+                        <span id=""></span> <a href="#none"><img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_account_change.gif" alt="환불계좌변경" id="id_has_bank_img" class="displaynone"><img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_account.gif" alt="환불계좌등록" id="id_reg_bank_img" class="displaynone"></a>
+                    </td>
+                </tr>
+
+                <tr class="">
+                    <th scope="row">SMS 수신여부 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
+                    <td><input id="is_sms0" name="is_sms" fw-filter="isFill" fw-label="is_sms" fw-msg="" value="T" type="radio"><label for="is_sms0">수신함</label>
+                        <input id="is_sms1" name="is_sms" fw-filter="isFill" fw-label="is_sms" fw-msg="" value="F" type="radio" checked="checked"><label for="is_sms1">수신안함</label><p>쇼핑몰에서 제공하는 유익한 이벤트 소식을 SMS로 받으실 수 있습니다.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">이메일 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
+                    <td>
+                        <input id="email1" name="email1" fw-filter="isFill&amp;isEmail" fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text"> <span id="emailMsg"></span>
+                        <p class="displaynone">이메일 주소 변경 시 로그아웃 후 재인증을 하셔야만 로그인이 가능합니다.<br>인증 메일은 24시간 동안 유효하며, 유효 시간이 만료된 후에는 가입 정보로 로그인 하셔서 재발송 요청을 해주시기 바랍니다.</p>
+                    </td>
+                </tr>
+                <tr class="">
+                    <th scope="row">이메일 수신여부 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
+                    <td><input id="is_news_mail0" name="is_news_mail" fw-filter="isFill" fw-label="is_news_mail" fw-msg="" value="T" type="radio"><label for="is_news_mail0">수신함</label>
+                        <input id="is_news_mail1" name="is_news_mail" fw-filter="isFill" fw-label="is_news_mail" fw-msg="" value="F" type="radio" checked="checked"><label for="is_news_mail1">수신안함</label><p>쇼핑몰에서 제공하는 유익한 이벤트 소식을 이메일로 받으실 수 있습니다.</p>
+                    </td>
+                </tr>
 
                 </tbody>
             </table>
+
+
+            <div class="displaynone">
+                <h3>개인정보 제3자 제공 동의(선택)</h3>
+                <div class="ec-base-box typeThinBg agreeArea">
+                    <div class="content">
+                        아래 내용의 동의 여부는 회원가입에 영향을 미치지 않습니다. 단, 동의 거부시 서비스 이용에 제한이 있을 수 있습니다.<br>
+                        <br>
+                        - 제공 받는 자 :<br>
+                        <br>
+                        - 제공 항목 :<br>
+                        <br>
+                        - 제공 목적 :<br>
+                        <br>
+                        - 보유 및 이용기간 :<br>
+                    </div>
+                    <p class="check"><span>개인정보 제3자 제공에 동의하십니까?</span> <input id="agree_information_check0" name="agree_information_check[]" fw-filter="" fw-label="개인정보 제3자 제공 동의" fw-msg="" value="1" type="checkbox"><label for="agree_information_check0">동의함</label></p>
+                </div>
+            </div>
+            <div class="displaynone">
+                <h3>개인정보 처리 위탁 동의(선택)</h3>
+                <div class="ec-base-box typeThinBg agreeArea">
+                    <div class="content">
+                        아래 내용의 동의 여부는 회원가입에 영향을 미치지 않습니다. 단, 동의 거부시 서비스 이용에 제한이 있을 수 있습니다.<br>
+                        <br>
+                        - 위탁받는 자(수탁업체) :<br>
+                        <br>
+                        - 위탁업무의 내용:<br>
+                    </div>
+                    <p class="check"><span>개인정보 처리 위탁에 동의하십니까?</span> <input id="agree_consignment_check0" name="agree_consignment_check[]" fw-filter="" fw-label="개인정보 처리 위탁 동의" fw-msg="" value="1" type="checkbox"><label for="agree_consignment_check0">동의함</label></p>
+                </div>
+            </div>
+            <div class="ec-base-button justify" style="margin-top:20px;">
+                <a href="#none" onclick="memberEditAction()" class="dj-btn-3 btn_modify">Modify<!--<img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_modify_member.gif" alt="회원정보수정" />--></a>
+                <a href="/index.html" class="dj-btn-3 btn_modify">Cancel<!--<img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_modify_cancel.gif" alt="취소" />--></a>
+                <span class="gRight">
+            <a href="#none" onclick="memberDelAction(1000, -1, -1)" class="dj-btn-3 btn_modify">Withdrawal<!--<img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_modify_out.gif" alt="회원탈퇴" />--></a>
+        </span>
+            </div>
+            <div class="layerLeave ec-base-layer" id="">
+
+                <div class="header">
+                    <h3>회원탈퇴</h3>
+                </div>
+                <div class="content">
+                    <div class="ec-base-box typeMember">
+                        <div class="information">
+                            <strong class="title">혜택 내역</strong>
+                            <div class="description">
+                                <ul>
+                                    <li id="">탈퇴시 보유하고 있는 적립금은 모두 삭제됩니다.</li>
+                                    <li>현재 적립금 : <strong id="" class="txtEm">0</strong>
+                                    </li>
+                                    <li id="">현재 예치금 : <strong id="" class="txtEm">0</strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>회원탈퇴 사유</h4>
+                    <div class="ec-base-table typeWrite">
+                        <table border="1" summary="">
+                            <caption>회원탈퇴 사유</caption>
+                            <colgroup>
+                                <col style="width:140px;">
+                                <col style="width:auto;">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th scope="row">선택</th>
+                                <td></td>
+                            </tr>
+                            <tr id="">
+                                <th scope="row">기타</th>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="ec-base-button">
+                    <a href="#none" id=""><img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_leave.gif" alt="탈퇴"></a>
+                    <a href="#none" onclick="$('#').hide();"><img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_leave_cancel.gif" alt="취소"></a>
+                </div>
+                <a href="#none" class="close" onclick="$('#').hide();"><img src="//img.echosting.cafe24.com/skin/base/common/btn_close.gif" alt="닫기"></a>
+            </div>
         </div>
+        <input type="hidden" name="agree_information_check_display" value="T"><input type="hidden" name="agree_consignment_check_display" value="T"></form>
+
+
+    </div>
     </div>
 </section>
 <th:block th:include="include/user_footer.html"/>
