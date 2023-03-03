@@ -2,37 +2,14 @@
 <html lagn="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-
     <th:block th:include="/include/common_css.html"></th:block>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
     <style>
         #gap {
             margin-top: 80px;
             margin-bottom: 50px;
         }
 
-        .hover:hover {
-            color: #a367e7;
-        }
-
-        .backcol {
-            background: #1e1e1e;
-            border: #1e1e1e;
-        }
-        .backcol:hover{
-            background: #a367e7;
-            border: #a367e7;
-        }
-        .fontcolors {
-            margin-top:40px;
-            margin-bottom: 40px;
-            font-size: 15px;
-        }
-
-        .page-link {
-            color: #000;
-            background-color: #fff;
-            border: 1px solid #ccc;
-        }
         .page-item.active .page-link {
             z-index: 1;
             color: #555;
@@ -41,37 +18,67 @@
             border-color: #ccc;
 
         }
-        .page-link:focus, .page-link:hover {
-            color: #000;
-            background-color: #fafafa;
-            border-color: #ccc;
+
+        .userinfo {
+            padding-top: 17px;
+            font-size: 17px;
+            color: #2375ff;
+            font-weight: 500;
         }
 
-        .rad{
-            border-radius: 10px;
-            padding: 10px 30px;
-        }
-
-        .mar {
-            margin-right: 20px;
-        }
-
-        .acol {
-            color: black;
-        }
-        .mar2 {
-            margin: 0px 10px;
-        }
 
     </style>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <th:block th:include="/include/common_css.html"></th:block>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script th:inline="javascript">
+        function cancelOrder(orderId) {
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+
+            var url = "/order/" + orderId + "/cancel";
+            var paramData = {
+                orderId : orderId,
+            };
+
+            var param = JSON.stringify(paramData);
+
+            $.ajax({
+                url      : url,
+                type     : "POST",
+                contentType : "application/json",
+                data     : param,
+                beforeSend : function(xhr){
+                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                    xhr.setRequestHeader(header, token);
+                },
+                dataType : "json",
+                cache   : false,
+                success  : function(result, status){
+                    alert("주문이 취소 되었습니다.");
+                    location.href='/orders/' + [[${page}]];
+                },
+                error : function(jqXHR, status, error){
+                    if(jqXHR.status == '401'||jqXHR.status == '500'){
+                        alert('로그인 후 이용해주세요');
+                        location.href='/member/login';
+                    } else{
+                        alert(jqXHR.responseText);
+                    }
+                }
+            });
+        }
+    </script>
+
 </head>
 <body>
 
 <th:block th:include="/include/header.html"></th:block>
 
 <section class="latest-product-area">
-
 
     <div class="container">
         <div class="row product-btn d-flex text-start" id="gap">
@@ -81,64 +88,87 @@
                     <h2>MY ACCOUNT</h2>
                 </div>
             </div>
-
         </div>
 
-        <div class="col-12 mb-2 ">
-            <div class="container-fluid d-flex align-items-baseline justify-content-center border border-primary">
-            <div class="row">
 
-                <div class="col-4">
+        <div class="row col-12 mt-80 text-center justify-content-center ">
+
+            <div class="col-2 offset-1 mr-1 border border-primary">
+                <img src="/admin_asset/img/profile-img.png" alt="Profile" class="mt-1 rounded-circle">
+            </div>
+
+            <div class="col-5 border border-primary">
+                <p class="userinfo">율스샵을 이용해 주셔서 감사합니다.</br>
+                    율랭이님은 현재 [회원등급:운영자]입니다.</p>
+            </div>
+
+            <div class="row col-10 offset-1 mt-50">
+
+                <div class="col-2 offset-1 border border-secondary text-center pt-25 mr-1">
+                    <a th:href="@{/orders}">
                     <h3>
                         <i class="fa-regular fa-credit-card"></i>
                     </h3>
                     <p>구매이력</p>
+                    </a>
 
                 </div>
-                <div class="col-4">
+                <div class="col-2 border border-secondary text-center pt-25 mr-1">
+                    <a th:href="@{/member/personalinfo}">
                     <h3>
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </h3>
-                    <p>장바구니</p>
-
-                </div>
-                <div class="col-4">
-                    <h3>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <i class="fa-solid fa-user"></i>
                     </h3>
                     <p>회원정보</p>
-
+                    </a>
                 </div>
-                <div class="col-4">
+                <div class="col-2 border border-secondary text-center pt-25 mr-1">
+                    <a th:href="@{/member/personalinfo}">
                     <h3>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <i class="fa-solid fa-tags"></i>
                     </h3>
-                    <p>쿠폰</p>
-
+                    <p>쿠폰관리</p>
+                    </a>
                 </div>
-                <div class="col-4">
+                <div class="col-2 border border-secondary text-center pt-25 mr-1">
+                    <a th:href="@{/mypage/purchase}">
                     <h3>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <i class="fa-regular fa-pen-to-square"></i>
                     </h3>
-                    <p>장바구니</p>
-
+                    <p>내가 쓴 게시물</p>
+                    </a>
                 </div>
-                <div class="col-4">
+                <div class="col-2 border border-secondary text-center pt-25">
+                    <a th:href="@{/mypage/purchase}">
                     <h3>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <i class="fa-solid fa-truck"></i>
                     </h3>
                     <p>배송지관리</p>
-
+                    </a>
                 </div>
              </div>
 
-            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         </div>
     </div>
 
 </section>
-
 <th:block th:include="/include/user_footer.html"></th:block>
 
 <th:block th:include="/include/common_js.html"></th:block>

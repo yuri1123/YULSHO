@@ -70,6 +70,10 @@ public class MemberController {
         return "member/mypage";
     }
 
-
+    //회원정보 페이지로 이동
+    @GetMapping("/personalinfo")
+    public String personalInfo(Model model){
+        return "member/personalinfo";
+    }
 
 }
