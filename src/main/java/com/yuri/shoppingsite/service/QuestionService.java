@@ -4,6 +4,7 @@ import com.yuri.shoppingsite.Repository.QuestionRepository;
 import com.yuri.shoppingsite.config.DataNotFoundException;
 import com.yuri.shoppingsite.domain.community.Answer;
 import com.yuri.shoppingsite.domain.community.Question;
+import com.yuri.shoppingsite.domain.user.Member;
 import com.yuri.shoppingsite.domain.user.SiteUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -42,12 +43,12 @@ public class QuestionService {
         }
         }
 
-    public void create(String subject, String content, SiteUser user){
+    public void create(String subject, String content, Member member){
     Question q = new Question();
     q.setSubject(subject);
     q.setContent(content);
     q.setCreateDate(LocalDateTime.now());
-    q.setAuthor(user);
+    q.setAuthor(member);
     this.questionRepository.save(q);
     }
 

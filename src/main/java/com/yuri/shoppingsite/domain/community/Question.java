@@ -1,5 +1,6 @@
 package com.yuri.shoppingsite.domain.community;
 
+import com.yuri.shoppingsite.domain.user.Member;
 import com.yuri.shoppingsite.domain.user.SiteUser;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +27,7 @@ public class Question {
         @CreatedDate
         private LocalDateTime createDate;
         @ManyToOne
-        private SiteUser author;
+        private Member author;
         @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
         private List<Answer> answerList;
 

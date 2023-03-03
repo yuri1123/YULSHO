@@ -4,10 +4,12 @@ import com.yuri.shoppingsite.Repository.AnswerRepository;
 import com.yuri.shoppingsite.config.DataNotFoundException;
 import com.yuri.shoppingsite.domain.community.Answer;
 import com.yuri.shoppingsite.domain.community.Question;
+import com.yuri.shoppingsite.domain.user.Member;
 import com.yuri.shoppingsite.domain.user.SiteUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -17,12 +19,12 @@ public class AnswerService {
 
        private final AnswerRepository answerRepository;
 
-        public void create(Question question, String content, SiteUser author){
+        public void create(Question question, String content, Member member){
             Answer answer = new Answer();
             answer.setContent(content);
             answer.setCreateDate(LocalDateTime.now());
             answer.setQuestion(question);
-            answer.setAuthor(author);
+            answer.setAuthor(member);
             this.answerRepository.save(answer);
         }
 
@@ -45,8 +47,8 @@ public class AnswerService {
             this.answerRepository.delete(answer);
         }
 
-        public void vote(Answer answer, SiteUser siteUser){
-            answer.getVoter().add(siteUser);
+        public void vote(Answer answer, Member member){
+            answer.getVoter().add(member);
             this.answerRepository.save(answer);
         }
 

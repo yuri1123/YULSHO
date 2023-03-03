@@ -108,14 +108,42 @@
                 </div>
             </div>
         </div>
-        <div class="row col-8 offset-2 mt-40 text-center justify-content-center ">
+        <div class="row col-12 mt-40 text-start justify-content-start ">
+
+            <table>
+                <colgroup>
+                    <col style="width:150px;">
+                    <col style="width:auto;">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th scope="row">아이디 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
+                    <td>
+                        <input id="member_id" name="member_id" fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity" fw-label="아이디" fw-msg="" class="inputTypeText" placeholder="" readonly="readonly" value="" type="text">
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">새 비밀번호 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" class="" alt="필수"></th>
+                    <td><input id="passwd" name="passwd" fw-filter="isMin[4]&amp;isMax[16]" fw-label="비밀번호" fw-msg="" autocomplete="off" maxlength="16" disabled="1" value="" type="password"> (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)</td>
+                </tr>
+                <tr class="">
+                    <th scope="row">새 비밀번호 확인 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
+                    <td><input id="user_passwd_confirm" name="user_passwd_confirm" fw-filter="isMatch[passwd]" fw-label="비밀번호 확인" fw-msg="비밀번호가 일치하지 않습니다." autocomplete="off" maxlength="16" disabled="1" value="" type="password"> <span id="pwConfirmMsg"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">이름<img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
+                    <td>
+                        <input id="nickname" name="nickname" class="inputTypeText" type="text">
+                    </td>
+                </tr>
 
 
 
-
+                </tbody>
+            </table>
         </div>
-
-
     </div>
 </section>
 <th:block th:include="include/user_footer.html"/>

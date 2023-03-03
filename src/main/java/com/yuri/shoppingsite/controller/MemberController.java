@@ -53,6 +53,10 @@ public class MemberController {
     //    로그인페이지로 이동
     @GetMapping("/login")
     public String gologin(){
+
+
+
+
         return "member/login";
     }
 

@@ -1,6 +1,6 @@
 package com.yuri.shoppingsite.domain.community;
 
-import com.yuri.shoppingsite.domain.user.SiteUser;
+import com.yuri.shoppingsite.domain.user.Member;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -23,9 +23,9 @@ public class Answer {
         @ManyToOne
         private Question question;
         @ManyToOne
-        private SiteUser author;
+        private Member author;
         private LocalDateTime modifyDate;
         @ManyToMany
-        Set<SiteUser> voter;
+        Set<Member> voter;
 
 }
