@@ -80,4 +80,31 @@ public class MemberController {
         return "member/personalinfo";
     }
 
+    //쿠폰 관리 페이지로 이동
+    @GetMapping("/coupon")
+    public String coupon(){
+        return "member/coupon";
+    }
+
+    //내가 쓴 게시물 보기 페이지로 이동
+    @GetMapping("/myboard")
+    public String myboard(){
+        return "member/myboard";
+    }
+
+
+    //배송지관리 리스트페이지로 이동
+    @GetMapping("/delivery/list")
+    public String deleverylist(){
+        return "member/deliveryaddresslist";
+    }
+
+    //배송지관리 등록페이지로 이동
+    @GetMapping("/delivery/enroll")
+    public String deliveryenroll(){
+        return "member/deliveryaddressenroll";
+    }
+
+
+
 }

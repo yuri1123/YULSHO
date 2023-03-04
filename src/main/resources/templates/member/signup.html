@@ -8,27 +8,7 @@
 
     <style>
 
-        hr {
-            width:60%;
-        }
-
-        a {
-            color: #6A24FE;
-            text-decoration-color: #6A24FE;
-            text-decoration-line: underline;
-        }
-
-        a:hover {
-            color: #c738d8;
-            text-decoration-color: #c738d8;
-            text-decoration-line: underline;
-        }
-        .fontstyle {
-            font-size: 32px;
-            color: white;
-        }
-
-         #gap {
+            #gap {
              margin-top: 100px;
              margin-bottom: 5px;
          }
@@ -71,13 +51,6 @@
             margin-top: 20px;
         }
 
-        #configtwo {
-            color: #fff;
-            font-size: 16px;
-            background-color: #0b0b0b;
-        }
-
-
         #login-form > input[type="checkbox"]{
             display: none;
         }
@@ -100,7 +73,16 @@
         .fieldError {
             color:#bd2130;
         }
-
+        .fs14 {
+            font-size:14px;
+        }
+        .fswe{
+            font-size:19px;
+            font-weight: 500;
+        }
+        .inputwidth {
+            width:40vw;
+        }
 
     </style>
 
@@ -108,102 +90,157 @@
 </head>
 <body>
 
+<th:block th:include="/include/header.html"></th:block>
 
-<div class="header-area">
-    <div class="main-header ">
-        <div class="header-top top-bg d-none d-lg-block">
-            <div class="container-fluid">
-                <div class="col-xl-12">
-                    <div class="row d-flex justify-content-between align-items-center">
-                        <div class="header-info-left d-flex">
-                            <div class="logo">
-                                <a href="/"><img src="/assets/img/logo/logo.png" alt=""></a>
-                            </div>
-                            <div class="contact-now">
-                              <p class="fontstyle">회원가입</p>
-                            </div>
-                        </div>
-                    </div>
+<section class="latest-product-area">
+
+    <div class="container">
+        <div class="row product-btn d-flex text-start" id="gap">
+            <!-- Section Tittle -->
+            <div class="col-lg-10 col-md-10 col-sm-10 offset-1 mb-2">
+                <div class="section-tittle mb-30">
+                    <h2>SIGN UP</h2>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!-- Header End -->
 
-<!--회원가입 화면-->
-<div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12" id="gap">
-            <h1 class="text-center">SIGN UP</h1>
-            </div>
+        <form method="post" th:action="@{/member/signup}" role="form"
+              th:object="${memberFormDto}" id="login-form">
+        <div class="row col-12 mt-40 text-start justify-content-start ">
 
-            <div class="row col-12 mt-40 text-start justify-content-start ">
-
-                <table>
-                    <colgroup>
-                        <col style="width:150px;">
-                        <col style="width:auto;">
-                    </colgroup>
-                    <tbody>
-                    <tr>
-                        <th scope="row">아이디 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
-                        <td>
-                            <input id="member_id" name="member_id" fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity" fw-label="아이디" fw-msg="" class="" placeholder="" readonly="readonly" value="" type="text">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><hr></th>
-                        <td><hr></td>
-                    </tr>
-                    </tbody>
-                </table>
-                </div>
-             <div class="col-lg-12 col-md-12 col-sm-12">
-             <div class="text-center" id="flex-align">
-                 <div class="login-wrapper">
-                    <form method="post" th:action="@{/member/signup}" role="form"
-                          th:object="${memberFormDto}" id="login-form" class="text-center">
-
-                        <label th:for="name">아이디</label>
-                        <input type="text" th:field="*{name}" placeholder="아이디를 입력해주세요" >
+            <table>
+                <colgroup>
+                    <col style="width:150px;">
+                    <col style="width:auto;">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th scope="row">아이디 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
+                    <td>
+                        <input id="name" th:field="*{name}" placeholder=" 아이디를 입력해주세요" type="text">
                         <p th:if="${#fields.hasErrors('name')}"
-                                    th:errors="*{name}" class="fieldError">Incorrect data</p>
+                           th:errors="*{name}" class="fieldError">Incorrect data</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th><hr></th>
+                    <td><hr></td>
+                </tr>
 
-                        <label th:for="email">이메일</label>
-                        <input type="email" th:field="*{email}" placeholder="이메일을 입력해주세요">
+                <tr>
+                    <th scope="row">비밀번호</th>
+                    <td><input id="passwd" th:field="*{password}" fw-filter="isMin[4]&amp;isMax[16]" fw-label="비밀번호" fw-msg=""  maxlength="16" value="" type="password"><span class="fs14">            (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)</span>
+                    <p th:if="${#fields.hasErrors('password')}"
+                       th:errors="*{password}" class="fieldError">Incorrect data</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th><hr></th>
+                    <td><hr></td>
+                </tr>
+                <tr class="">
+                    <th scope="row">비밀번호 확인</th>
+                    <td><input id="user_passwd_confirm" name="user_passwd_confirm" fw-filter="isMatch[password]" fw-label="비밀번호 확인" fw-msg="비밀번호가 일치하지 않습니다." maxlength="16"  value="" type="password"> <span id="pwConfirmMsg"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><hr></th>
+                    <td><hr></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">이메일 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
+                    <td>
+                        <input id="email1" th:field="*{email}" fw-filter="isFill&amp;isEmail" fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text"> <span id="emailMsg"></span>
                         <p th:if="${#fields.hasErrors('email')}"
                            th:errors="*{email}" class="fieldError">Incorrect data</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th><hr></th>
+                    <td><hr></td>
+                </tr>
 
-                        <label th:for="password">패스워드</label>
-                        <input type="password" th:field="*{password}" placeholder="비밀번호를 입력해주세요">
-                        <p th:if="${#fields.hasErrors('password')}"
-                           th:errors="*{password}" class="fieldError">Incorrect data</p>
-<!--                        <label>패스워드확인</label>&ndash;&gt;-->
-                        <!--                        <input type="password" th:field="*{password2}" placeholder="Password 확인">-->
-
-                        <label th:for="address">주소</label>
-                        <input type="text" th:field="*{address}" placeholder="이메일을 입력해주세요">
-                        <p th:if="${#fields.hasErrors('address')}"
-                           th:errors="*{address}" class="fieldError">Incorrect data</p>
-
-                        <label th:for="nickname">닉네임</label>
-                        <input type="text" th:field="*{nickname}" placeholder="닉네임을 입력해주세요">
+                <tr>
+                    <th scope="row">이름  <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
+                    <td>
+                        <input id="nickname" th:field="*{nickname}" class="" type="text">
                         <p th:if="${#fields.hasErrors('nickname')}"
                            th:errors="*{nickname}" class="fieldError">Incorrect data</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th><hr></th>
+                    <td><hr></td>
+                </tr>
+                <tr class="">
+                    <th scope="row">주소 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" class="" alt="필수"></th>
+                    <td>
+                        <input id="postcode1" name="postcode1" fw-filter="isLengthRange[1][14]" fw-label="우편번호1" fw-msg="" class=" mb-1" placeholder="" readonly="readonly" maxlength="14" value="" type="text">
+                        <a href="#none" onclick="ZipcodeFinder.Opener.bind('postBtn', 'postcode1', 'postcode2', 'addr1', 'layer', 'ko_KR');" id="postBtn"><img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_zipcode.gif" alt="우편번호"></a><br>
+                        <input id="addr1" name="addr1" fw-filter="isFill" fw-label="주소" fw-msg="" class="inputwidth mb-1" placeholder="" readonly="readonly" value="" type="text"> 기본주소<br>
+                        <input id="addr2" th:field="*{address}"  fw-filter="" fw-label="주소" fw-msg="" class="inputwidth mb-1" placeholder="" value="" type="text"> 나머지주소
+                         <p th:if="${#fields.hasErrors('address')}"
+                             th:errors="*{address}" class="fieldError">Incorrect data</p>
+                    </td>
 
-                        <label th:for="birth">생년월일</label>
-                        <input type="date" th:field="*{birth}" placeholder="생일을 입력해주세요">
-                        <p th:if="${#fields.hasErrors('birth')}"
-                           th:errors="*{birth}" class="fieldError">Incorrect data</p>
-
-                        <label th:for="phone">휴대전화</label>
-                        <input type="text" th:field="*{phone}" placeholder="전화번호를 입력해주세요">
+                </tr>
+                <tr>
+                    <th><hr></th>
+                    <td><hr></td>
+                </tr>
+                <tr class="">
+                    <th scope="row">전화번호</th>
+                    <td>
+                        <input id="comphone" th:field="*{phone}" class="" type="text">
                         <p th:if="${#fields.hasErrors('phone')}"
                            th:errors="*{phone}" class="fieldError">Incorrect data</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th><hr></th>
+                    <td><hr></td>
+                </tr>
 
-                        <input type="submit" value="회원가입">
+                <tr class="">
+                    <th scope="row">생년월일 </th>
+                    <td>
+                        <input id="birth" th:field="*{birth}" class="" type="date">
+                        <p th:if="${#fields.hasErrors('birth')}"
+                           th:errors="*{birth}" class="fieldError">Incorrect data</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th><hr></th>
+                    <td><hr></td>
+                </tr>
+                <tr class="">
+                    <th scope="row">SMS 수신여부 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
+                    <td><input  fw-filter="isFill" fw-label="is_sms" fw-msg="" value="T" type="radio"><label for="is_sms0">수신함</label>
+                        <input fw-filter="isFill" fw-label="is_sms" fw-msg="" value="F" type="radio" checked="checked"><label for="is_sms1">수신안함</label><p class="fs14">율스샵에서 제공하는 유익한 이벤트 소식을 SMS로 받으실 수 있습니다.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th><hr></th>
+                    <td><hr></td>
+                </tr>
 
+                <tr class="">
+                    <th scope="row">이메일 수신여부 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
+                    <td><input  fw-filter="isFill" fw-label="is_news_mail" fw-msg="" value="T" type="radio"><label for="is_news_mail0">수신함</label>
+                        <input  fw-filter="isFill" fw-label="is_news_mail" fw-msg="" value="F" type="radio" checked="checked"><label for="is_news_mail1">수신안함</label><p class="fs14">율스샵에서 제공하는 유익한 이벤트 소식을 이메일로 받으실 수 있습니다.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th><hr></th>
+                    <td><hr></td>
+                </tr>
+                <tr class="mb-30">
+                    <th></th>
+                    <td><input type="submit" value="회원가입"></td>
+                </tr>
+                </tbody>
+            </table>
                         <!--회원가입 시 실패하면 에러메시지를 경고창을 이용해서 보여줌-->
                         <script th:inline="javascript">
                             // $(document).ready(function (){
@@ -225,18 +262,15 @@
               </div>
              </div>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
-            </div>
-
-
-
-
   </div>
  </div>
 
 
 </th:block>
 
+</section>
+
+<th:block th:include="/include/user_footer.html"></th:block>
 
 
 </body>

@@ -155,8 +155,8 @@
                 <tr>
                     <th scope="row">이메일 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
                     <td>
-                        <input id="email1" name="email1" fw-filter="isFill&amp;isEmail" fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text"> <span id="emailMsg"></span>
-                        <p class="displaynone">이메일 주소 변경 시 로그아웃 후 재인증을 하셔야만 로그인이 가능합니다.<br>인증 메일은 24시간 동안 유효하며, 유효 시간이 만료된 후에는 가입 정보로 로그인 하셔서 재발송 요청을 해주시기 바랍니다.</p>
+                        <input id="email1" name="email1" fw-filter="isFill&amp;isEmail" fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text"> <span id="emailMsg"><br></span>
+                        <span class="displaynone fs14">이메일 주소 변경 시 로그아웃 후 재인증을 하셔야만 로그인이 가능합니다.<br>인증 메일은 24시간 동안 유효하며, 유효 시간이 만료된 후에는 가입 정보로 로그인 하셔서 재발송 요청을 해주시기 바랍니다.</span>
                     </td>
                 </tr>
                 <tr>
@@ -222,7 +222,7 @@
                 <tr class="">
                     <th scope="row">SMS 수신여부 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
                     <td><input id="is_sms0" name="is_sms" fw-filter="isFill" fw-label="is_sms" fw-msg="" value="T" type="radio"><label for="is_sms0">수신함</label>
-                        <input id="is_sms1" name="is_sms" fw-filter="isFill" fw-label="is_sms" fw-msg="" value="F" type="radio" checked="checked"><label for="is_sms1">수신안함</label><p class="fs14">율스샵에서 제공하는 유익한 이벤트 소식을 SMS로 받으실 수 있습니다.</p>
+                        <input id="is_sms1" name="is_sms" fw-filter="isFill" fw-label="is_sms" fw-msg="" value="F" type="radio" checked="checked"><label for="is_sms1">수신안함</label><span class="fs14"><br>율스샵에서 제공하는 유익한 이벤트 소식을 SMS로 받으실 수 있습니다.</span>
                         </td>
                 </tr>
                 <tr>
@@ -233,7 +233,7 @@
                 <tr class="">
                     <th scope="row">이메일 수신여부 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"></th>
                     <td><input id="is_news_mail0" name="is_news_mail" fw-filter="isFill" fw-label="is_news_mail" fw-msg="" value="T" type="radio"><label for="is_news_mail0">수신함</label>
-                        <input id="is_news_mail1" name="is_news_mail" fw-filter="isFill" fw-label="is_news_mail" fw-msg="" value="F" type="radio" checked="checked"><label for="is_news_mail1">수신안함</label><p class="fs14">율스샵에서 제공하는 유익한 이벤트 소식을 이메일로 받으실 수 있습니다.</p>
+                        <input id="is_news_mail1" name="is_news_mail" fw-filter="isFill" fw-label="is_news_mail" fw-msg="" value="F" type="radio" checked="checked"><label for="is_news_mail1">수신안함</label><span class="fs14"><br>율스샵에서 제공하는 유익한 이벤트 소식을 이메일로 받으실 수 있습니다.</span>
                     </td>
                 </tr>
                 <tr>
@@ -242,7 +242,6 @@
                 </tr>
                 </tbody>
             </table>
-
 
 <!--            <div class="displaynone">-->
 <!--                <h3>개인정보 제3자 제공 동의(선택)</h3>-->
@@ -333,7 +332,16 @@
 
 
     </div>
+        <div class="row col-12 mt-40 text-start justify-content-end ">
+            <div>
+
+                <button class="btn-primary backcol rad"><a th:href="@{/member/delivery/enroll}">저장하기</a></button>
+                <button class="btn-primary backcol rad"><a th:href="@{/member/delivery/enroll}">실행취소하기</a></button>
+            </div>
+        </div>
+
     </div>
+
 </section>
 <th:block th:include="include/user_footer.html"/>
 
