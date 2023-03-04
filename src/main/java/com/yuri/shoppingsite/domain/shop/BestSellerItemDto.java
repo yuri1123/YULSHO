@@ -8,7 +8,7 @@ import lombok.Setter;
 public class BestSellerItemDto {
 
     private Long id;
-
+    private String category;
     private String itemNm;
 
     private String itemDetail;

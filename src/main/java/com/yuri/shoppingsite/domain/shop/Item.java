@@ -1,5 +1,6 @@
 package com.yuri.shoppingsite.domain.shop;
 
+import com.yuri.shoppingsite.constant.Category;
 import com.yuri.shoppingsite.constant.ItemSellStatus;
 import com.yuri.shoppingsite.domain.common.BaseEntity;
 import com.yuri.shoppingsite.exception.OutOfStockException;
@@ -19,6 +20,9 @@ public class Item extends BaseEntity {
     @Column(name="item_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;       //상품 코드
+
+    @Enumerated(EnumType.STRING)
+    private Category category; //카테고리
 
     @Column(nullable = false, length = 50)
     private String itemNm; //상품명

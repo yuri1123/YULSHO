@@ -1,5 +1,6 @@
 package com.yuri.shoppingsite.domain.shop;
 
+import com.yuri.shoppingsite.constant.Category;
 import com.yuri.shoppingsite.constant.ItemSellStatus;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +25,7 @@ public class ItemFormDto {
     @NotNull(message = "재고는 필수 입력값입니다.")
     private Integer stockNumber;
     private int orderTotalCount; //주문총횟수
+    private Category category;
     private ItemSellStatus itemSellStatus;
     //상품 저장 후 수정할 때 상품 이미지 정보를 저장하는 리스트
     private List<ItemImgDto> itemImgDtoList = new ArrayList<>();

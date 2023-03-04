@@ -8,6 +8,7 @@ import lombok.Setter;
 public class LatestItemDto {
 
     private Long id;
+    private String category;
 
     private String itemNm;
 
